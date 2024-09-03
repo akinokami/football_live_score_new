@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/color_const.dart';
-import 'package:football_live_score/utils/constants.dart';
 import 'package:football_live_score/utils/enum.dart';
 import 'package:football_live_score/views/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
@@ -20,7 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Global.language = LocalStorage.instance.read(language) ?? Language.vi.name;
+    Global.language = LocalStorage.instance.read(StorageKey.language.name) ??
+        Language.vi.name;
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

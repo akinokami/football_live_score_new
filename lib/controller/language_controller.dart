@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:football_live_score/utils/enum.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
+import '../services/local_storage.dart';
 
 class LanguageController extends GetxController {
   final language = ''.obs;
@@ -15,12 +17,11 @@ class LanguageController extends GetxController {
     language.value = languageCode;
 
     Get.updateLocale(Locale(languageCode, countryCode));
-    final box = GetStorage();
-    box.write('language', languageCode);
+    LocalStorage.instance.write(StorageKey.language.name, languageCode);
   }
 
   void getLanguage() {
-    final box = GetStorage();
-    language.value = box.read('language') ?? 'vi';
+    language.value = LocalStorage.instance.read(StorageKey.language.name) ??
+        Language.vi.name;
   }
 }
