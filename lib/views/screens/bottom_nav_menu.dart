@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/enum.dart';
-import 'package:football_live_score/views/screens/score/score_screen.dart';
+import 'package:football_live_score/views/screens/match/match_screen.dart';
 import 'package:football_live_score/views/screens/settings/setting_screen.dart';
 import 'package:football_live_score/views/widgets/custom_text.dart';
 import 'package:get/get.dart';
@@ -185,7 +185,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
       body: Obx(() => IndexedStack(
             index: bottomNavController.tabIndex.value,
             children: const [
-              PlayScreen(),
+              MatchScreen(),
               SettingScreen(),
             ],
           )),
