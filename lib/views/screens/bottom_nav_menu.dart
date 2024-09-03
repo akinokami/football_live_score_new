@@ -154,10 +154,10 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.scoreboard_outlined,
+                  Icons.sports_soccer,
                   size: 18.w,
                 ),
-                label: 'score'.tr,
+                label: 'matches'.tr,
                 backgroundColor: primaryColor,
               ),
               BottomNavigationBarItem(

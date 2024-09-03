@@ -18,7 +18,7 @@ class MatchScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         title: CustomText(
-          text: 'score'.tr,
+          text: 'matches'.tr,
           fontSize: 15.sp,
           fontWeight: FontWeight.w500,
         ),
