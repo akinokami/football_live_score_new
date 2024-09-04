@@ -4,7 +4,6 @@ import 'package:football_live_score/utils/dimen_const.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/color_const.dart';
-import '../../widgets/custom_card.dart';
 import '../../widgets/custom_text.dart';
 
 class MatchScreen extends StatelessWidget {
@@ -32,83 +31,92 @@ class MatchScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return CustomCard(
-                      widget: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 18.sp,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              CustomText(text: 'Barzil - Series B')
-                            ],
-                          ),
-                          kSizedBoxH5,
-                          Divider(height: 1.h, color: grey),
-                          kSizedBoxH10,
-                          Row(
+                    return  ExpansionTile(
+                          backgroundColor: whiteColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r)),
+                          collapsedBackgroundColor: whiteColor,
+                          collapsedShape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r)),
+                          title:  Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                width: 1.sw * 0.20,
-                                child: CustomText(text: 'Team A'),
-                              ),
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 18.sp,
-                              ),
-                              Column(
-                                children: [
-                                  CustomText(text: '2 - 1'),
-                                  CustomText(text: 'Finished')
-                                ],
-                              ),
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 18.sp,
-                              ),
-                              SizedBox(
-                                width: 1.sw * 0.20,
-                                child: CustomText(text: 'Team B'),
-                              ),
+                              const CustomText(text: 'Barzil - Series B'),
+                              CustomText(text: '2', color: green),
                             ],
                           ),
-                          kSizedBoxH10,
-                          Divider(height: 1.h, color: grey),
-                          kSizedBoxH10,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 1.sw * 0.20,
-                                child: CustomText(text: 'Team A'),
-                              ),
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 18.sp,
-                              ),
-                              Column(
-                                children: [
-                                  CustomText(text: '2 - 1'),
-                                  CustomText(text: 'Finished')
-                                ],
-                              ),
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 18.sp,
-                              ),
-                              SizedBox(
-                                width: 1.sw * 0.20,
-                                child: CustomText(text: 'Team B'),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                          children: [
+                            Column(
+                              children: [
+                                Divider(height: 1.h, color: grey),
+                                kSizedBoxH10,
+                                GestureDetector(
+                                  onTap: () {
+
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: 1.sw * 0.20,
+                                        child: const CustomText(text: 'Team A'),
+                                      ),
+                                      Icon(
+                                        Icons.sports_soccer,
+                                        size: 18.sp,
+                                      ),
+                                      const Column(
+                                        children: [
+                                          CustomText(text: '2 - 1'),
+                                          CustomText(text: 'Finished')
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.sports_soccer,
+                                        size: 18.sp,
+                                      ),
+                                      SizedBox(
+                                        width: 1.sw * 0.20,
+                                        child: const CustomText(text: 'Team B'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                kSizedBoxH10,
+                                Divider(height: 1.h, color: grey),
+                                kSizedBoxH10,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 1.sw * 0.20,
+                                      child: const CustomText(text: 'Team A'),
+                                    ),
+                                    Icon(
+                                      Icons.sports_soccer,
+                                      size: 18.sp,
+                                    ),
+                                    const Column(
+                                      children: [
+                                        CustomText(text: '2 - 1'),
+                                        CustomText(text: 'Finished')
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.sports_soccer,
+                                      size: 18.sp,
+                                    ),
+                                    SizedBox(
+                                      width: 1.sw * 0.20,
+                                      child: const CustomText(text: 'Team B'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ]
                     );
                   }),
             )

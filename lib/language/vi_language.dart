@@ -15,6 +15,8 @@ class ViLanguage {
     'search': 'Tìm kiếm',
     'general': 'Tổng quan',
     'other': 'Khác',
+    'matches': 'Trận đấu',
+    'match_detail': 'Chi tiết trận đấu',
     'please_wait': 'Vui lòng đợi',
     'no_data': 'Không tìm thấy dữ liệu'
   };

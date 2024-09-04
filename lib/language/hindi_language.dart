@@ -16,6 +16,7 @@ class HiLanguage {
     'general': 'सामान्य',
     'other': 'अन्य',
     'matches': 'मैच',
+    'match_detail': 'मैच का विवरण',
     'please_wait': 'कृपया प्रतीक्षा करें',
     'no_data': 'कोई डेटा उपलब्ध नहीं है',
   };

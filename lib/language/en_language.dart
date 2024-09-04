@@ -16,6 +16,7 @@ class EnLanguage {
     'general': 'General',
     'other': 'Other',
     'matches': 'Matches',
+    'match_detail': 'Match Detail',
     'please_wait': 'Please wait',
     'no_data': 'No data found',
   };
