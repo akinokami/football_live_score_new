@@ -19,5 +19,7 @@ class EnLanguage {
     'match_detail': 'Match Detail',
     'please_wait': 'Please wait',
     'no_data': 'No data found',
+    'overall': 'Overall',
+    'h2h': 'H2H',
   };
 }

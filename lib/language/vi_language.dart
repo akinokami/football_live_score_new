@@ -18,6 +18,8 @@ class ViLanguage {
     'matches': 'Trận đấu',
     'match_detail': 'Chi tiết trận đấu',
     'please_wait': 'Vui lòng đợi',
-    'no_data': 'Không tìm thấy dữ liệu'
+    'no_data': 'Không tìm thấy dữ liệu',
+    'overall': 'Tổng thể',
+    'h2h': 'H2H',
   };
 }

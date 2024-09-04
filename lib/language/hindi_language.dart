@@ -19,5 +19,7 @@ class HiLanguage {
     'match_detail': 'मैच का विवरण',
     'please_wait': 'कृपया प्रतीक्षा करें',
     'no_data': 'कोई डेटा उपलब्ध नहीं है',
+    'overall': 'समग्र',
+    'h2h': 'H2H',
   };
 }
