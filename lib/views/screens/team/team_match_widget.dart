@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:football_live_score/utils/dimen_const.dart';
-import 'package:football_live_score/views/screens/team/team_screen.dart';
+import 'package:football_live_score/views/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/color_const.dart';
+import '../../../utils/dimen_const.dart';
 import '../../widgets/custom_card.dart';
-import '../../widgets/custom_text.dart';
 
-class MatchScreen extends StatelessWidget {
-  const MatchScreen({super.key});
+class TeamMatchWidget extends StatelessWidget {
+  const TeamMatchWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class MatchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.to(() => const TeamScreen());
+                        // Get.to(() => const TeamScreen());
                       },
                       child: CustomCard(
                         widget: Column(
