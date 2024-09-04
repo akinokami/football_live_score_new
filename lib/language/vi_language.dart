@@ -15,7 +15,7 @@ class ViLanguage {
     'search': 'Tìm kiếm',
     'general': 'Tổng quan',
     'other': 'Khác',
-    'score': 'Điểm số',
     'please_wait': 'Vui lòng đợi',
+    'no_data': 'Không tìm thấy dữ liệu'
   };
 }

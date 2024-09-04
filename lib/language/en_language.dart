@@ -15,7 +15,6 @@ class EnLanguage {
     'search': 'Search',
     'general': 'General',
     'other': 'Other',
-    'score': 'Score',
     'matches': 'Matches',
     'please_wait': 'Please wait',
     'no_data': 'No data found',
