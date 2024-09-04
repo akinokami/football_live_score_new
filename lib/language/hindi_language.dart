@@ -1,5 +1,9 @@
 class HiLanguage {
   Map<String, String> hiLanguage = {
+    'vietnam': 'Tiếng Việt',
+    'english': 'English',
+    'chinese': '中文',
+    'india': 'हिन्दी',
     'lang': 'हिन्दी',
     'language': 'भाषा',
     'change_language': 'भाषा बदलें',

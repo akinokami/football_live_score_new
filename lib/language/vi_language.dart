@@ -1,5 +1,9 @@
 class ViLanguage {
   Map<String, String> viLanguage = {
+    'vietnam': 'Tiếng Việt',
+    'english': 'English',
+    'chinese': '中文',
+    'india': 'हिन्दी',
     'lang': 'Tiếng Việt',
     'language': 'Ngôn ngữ',
     'change_language': 'Thay đổi ngôn ngữ',
