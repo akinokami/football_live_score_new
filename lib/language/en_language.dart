@@ -1,5 +1,9 @@
 class EnLanguage {
   Map<String, String> enLanguage = {
+    'vietnam': 'Tiếng Việt',
+    'english': 'English',
+    'chinese': '中文',
+    'india': 'हिन्दी',
     'lang': 'English',
     'language': 'Language',
     'change_language': 'Change Language',
@@ -12,6 +16,7 @@ class EnLanguage {
     'general': 'General',
     'other': 'Other',
     'matches': 'Matches',
+    'match_detail': 'Match Detail',
     'please_wait': 'Please wait',
     'no_data': 'No data found',
   };
