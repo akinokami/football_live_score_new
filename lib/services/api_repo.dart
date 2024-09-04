@@ -1,7 +1,24 @@
+import 'package:football_live_score/models/match_model.dart';
 import 'package:football_live_score/services/api_utils.dart';
+
+import '../utils/custom_exception.dart';
+import 'api_constant.dart';
 
 class ApiRepo {
   final ApiUtils apiUtils = ApiUtils();
+
+  ///Matches
+  Future<MatchModel> getMatches() async {
+    try {
+      final response = await apiUtils.get(
+          url:
+              "${ApiConstant.baseUrl}Matches/list/date/1725408000/28800/v1/en/[]/[]/1");
+      final match = response.data;
+      return MatchModel.fromJson(match);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
 
   /// Movie
   // Future<List<SliderModel>> getMovieSlider() async {

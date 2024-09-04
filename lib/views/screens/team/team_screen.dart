@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/color_const.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
+import 'package:football_live_score/views/screens/team/team_match_widget.dart';
+import 'package:football_live_score/views/screens/team/team_overall_widget.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/custom_text.dart';
@@ -62,6 +64,7 @@ class TeamScreen extends StatelessWidget {
                     indicatorColor: Colors.white,
                     dividerColor: Colors.transparent,
                     labelColor: Colors.white,
+                    indicatorSize: TabBarIndicatorSize.tab,
                     tabs: [
                       Tab(text: 'overall'.tr),
                       Tab(text: 'matches'.tr),
@@ -75,11 +78,11 @@ class TeamScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
-                  Icon(Icons.flight, size: 350),
-                  Icon(Icons.directions_transit, size: 350),
+                  OverallWidget(),
+                  TeamMatchWidget(),
                   Icon(Icons.directions_car, size: 350),
                   Icon(Icons.directions_car, size: 350),
                 ],
