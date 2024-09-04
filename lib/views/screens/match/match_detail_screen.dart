@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/color_const.dart';
-import 'package:football_live_score/utils/dimen_const.dart';
 import 'package:football_live_score/views/screens/match/h2h_widget.dart';
+import 'package:football_live_score/views/screens/team/team_screen.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/custom_text.dart';
@@ -39,18 +39,23 @@ class MatchDetailScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.sports_soccer,
-                              size: 40.sp,
-                              color: Colors.white,
-                            ),
-                            const CustomText(
-                              text: 'teamA',
-                              color: Colors.white,
-                            ),
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const TeamScreen());
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.sports_soccer,
+                                size: 40.sp,
+                                color: Colors.white,
+                              ),
+                              const CustomText(
+                                text: 'teamA',
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
                         ),
                         Column(
                           children: [
@@ -81,18 +86,23 @@ class MatchDetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.sports_soccer,
-                              size: 40.sp,
-                              color: Colors.white,
-                            ),
-                            const CustomText(
-                              text: 'teamB',
-                              color: Colors.white,
-                            ),
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const TeamScreen());
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.sports_soccer,
+                                size: 40.sp,
+                                color: Colors.white,
+                              ),
+                              const CustomText(
+                                text: 'teamB',
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -116,10 +126,7 @@ class MatchDetailScreen extends StatelessWidget {
             ),
             const Expanded(
               child: TabBarView(
-                children: [
-                  OverallWidget(),
-                  H2HWidget()
-                ],
+                children: [OverallWidget(), H2HWidget()],
               ),
             ),
           ],
