@@ -9,6 +9,8 @@ class TeamController extends GetxController {
   final isLoading = false.obs;
   final teamId = ''.obs;
   Rx<TeamModel> team = TeamModel().obs;
+  RxList<Participants> players = <Participants>[].obs;
+  RxList<Participants> coach = <Participants>[].obs;
 
   @override
   void onInit() {
@@ -22,6 +24,14 @@ class TeamController extends GetxController {
     try {
       final result = await ApiRepo().getTeam(teamId.value);
       team.value = result;
+      if ((team.value.participants ?? []).isNotEmpty) {
+        players.value = (team.value.participants ?? [])
+            .where((element) => element.kn == 2)
+            .toList();
+        coach.value = (team.value.participants ?? [])
+            .where((element) => element.kn == 4)
+            .toList();
+      }
     } catch (e) {
       constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
     } finally {

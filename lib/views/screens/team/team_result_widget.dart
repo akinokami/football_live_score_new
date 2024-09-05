@@ -8,19 +8,19 @@ import '../../../utils/color_const.dart';
 import '../../../utils/dimen_const.dart';
 import '../../widgets/custom_card.dart';
 
-class TeamMatchWidget extends StatelessWidget {
-  final List<Fixtures>? matches;
-  const TeamMatchWidget({super.key, this.matches});
+class TeamResultWidget extends StatelessWidget {
+  final List<Results>? results;
+  const TeamResultWidget({super.key, this.results});
 
   @override
   Widget build(BuildContext context) {
-    return (matches ?? []).isEmpty
+    return (results ?? []).isEmpty
         ? Center(
             child: CustomText(text: 'no_data'.tr),
           )
         : ListView.builder(
             shrinkWrap: true,
-            itemCount: matches?.length,
+            itemCount: results?.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -42,7 +42,7 @@ class TeamMatchWidget extends StatelessWidget {
                           Expanded(
                             child: CustomText(
                               text:
-                                  "${matches?[index].cName ?? ''} ${matches?[index].stName ?? ''} ${matches?[index].season ?? ''}",
+                                  "${results?[index].cName ?? ''} ${results?[index].stName ?? ''} ${results?[index].season ?? ''}",
                               isEllip: true,
                             ),
                           )
@@ -57,8 +57,8 @@ class TeamMatchWidget extends StatelessWidget {
                           SizedBox(
                             width: 1.sw * 0.25,
                             child: CustomText(
-                              text: (matches?[index].teams ?? []).isNotEmpty
-                                  ? (matches?[index].teams?[0].name ?? '')
+                              text: (results?[index].teams ?? []).isNotEmpty
+                                  ? (results?[index].teams?[0].name ?? '')
                                   : '',
                               textAlign: TextAlign.right,
                               maxLines: 2,
@@ -74,22 +74,22 @@ class TeamMatchWidget extends StatelessWidget {
                               Row(
                                 children: [
                                   CustomText(
-                                    text: (matches?[index].score ?? []).isEmpty
-                                        ? "${matches?[index].score?[0] ?? 0}"
+                                    text: (results?[index].score ?? []).isEmpty
+                                        ? "${results?[index].score?[0] ?? 0}"
                                         : '0',
                                   ),
                                   const CustomText(
                                     text: ' - ',
                                   ),
                                   CustomText(
-                                    text: (matches?[index].score ?? []).length >
+                                    text: (results?[index].score ?? []).length >
                                             1
-                                        ? "${matches?[index].score?[1] ?? 0}"
+                                        ? "${results?[index].score?[1] ?? 0}"
                                         : '0',
                                   )
                                 ],
                               ),
-                              CustomText(text: 'Finished')
+                              const CustomText(text: 'FT')
                             ],
                           ),
                           Icon(
@@ -100,8 +100,8 @@ class TeamMatchWidget extends StatelessWidget {
                           SizedBox(
                             width: 1.sw * 0.25,
                             child: CustomText(
-                              text: (matches?[index].teams ?? []).length > 1
-                                  ? (matches?[index].teams?[1].name ?? '')
+                              text: (results?[index].teams ?? []).length > 1
+                                  ? (results?[index].teams?[1].name ?? '')
                                   : '',
                               textAlign: TextAlign.left,
                               maxLines: 2,
