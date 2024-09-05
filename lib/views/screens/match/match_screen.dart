@@ -16,6 +16,7 @@ class MatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchController = Get.put(MatchController());
+    final matchDetailController = Get.put(Matc)
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
@@ -44,6 +45,8 @@ class MatchScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
+                                matchDetailController
+                                    .getMatchesDetail('1-2874806');
                                 Get.to(() => MatchDetailScreen());
                               },
                               child: CustomCard(
@@ -70,34 +73,44 @@ class MatchScreen extends StatelessWidget {
                                     kSizedBoxH5,
                                     Divider(height: 1.h, color: grey),
                                     kSizedBoxH10,
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: 1.sw * 0.20,
-                                          child: CustomText(text: 'Team A'),
-                                        ),
-                                        Icon(
-                                          Icons.sports_soccer,
-                                          size: 18.sp,
-                                        ),
-                                        Column(
-                                          children: [
-                                            CustomText(text: '2 - 1'),
-                                            CustomText(text: 'Finished')
-                                          ],
-                                        ),
-                                        Icon(
-                                          Icons.sports_soccer,
-                                          size: 18.sp,
-                                        ),
-                                        SizedBox(
-                                          width: 1.sw * 0.20,
-                                          child: CustomText(text: 'Team B'),
-                                        ),
-                                      ],
-                                    ),
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: matchController
+                                            .matches[index].matches?.length,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index1) {
+                                          return Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                width: 1.sw * 0.20,
+                                                child:
+                                                    CustomText(text: 'Team A'),
+                                              ),
+                                              Icon(
+                                                Icons.sports_soccer,
+                                                size: 18.sp,
+                                              ),
+                                              Column(
+                                                children: [
+                                                  CustomText(text: '2 - 1'),
+                                                  CustomText(text: 'Finished')
+                                                ],
+                                              ),
+                                              Icon(
+                                                Icons.sports_soccer,
+                                                size: 18.sp,
+                                              ),
+                                              SizedBox(
+                                                width: 1.sw * 0.20,
+                                                child:
+                                                    CustomText(text: 'Team B'),
+                                              ),
+                                            ],
+                                          );
+                                        })
                                   ],
                                 ),
                               ),
