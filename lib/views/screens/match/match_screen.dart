@@ -4,6 +4,7 @@ import 'package:football_live_score/controller/match_controller.dart';
 import 'package:football_live_score/controller/match_detail_controller.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
 import 'package:football_live_score/views/screens/match/match_detail_screen.dart';
+import 'package:football_live_score/views/screens/team/team_screen.dart';
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:get/get.dart';
 
@@ -47,9 +48,12 @@ class MatchScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                matchDetailController
-                                    .getMatchesDetail('1-2874806');
-                                Get.to(() => MatchDetailScreen());
+                                // matchDetailController
+                                //     .getMatchesDetail('1-2874806');
+                                // Get.to(() => MatchDetailScreen());
+
+                                Get.to(() => const TeamScreen(),
+                                    arguments: {'teamId': '1-1651'});
                               },
                               child: CustomCard(
                                 widget: Column(
