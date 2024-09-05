@@ -7,6 +7,7 @@ import 'package:football_live_score/views/screens/match/match_detail_screen.dart
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/match_detail_controller.dart';
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/custom_text.dart';

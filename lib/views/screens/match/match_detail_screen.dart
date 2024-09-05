@@ -5,14 +5,17 @@ import 'package:football_live_score/views/screens/match/h2h_widget.dart';
 import 'package:football_live_score/views/screens/team/team_screen.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/match_detail_controller.dart';
 import '../../widgets/custom_text.dart';
 import 'overall_widget.dart';
 
 class MatchDetailScreen extends StatelessWidget {
-  const MatchDetailScreen({super.key});
+  const MatchDetailScreen({super.key,});
+
 
   @override
   Widget build(BuildContext context) {
+    final matchDetailController = Get.put(MatchDetailController());
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -50,10 +53,12 @@ class MatchDetailScreen extends StatelessWidget {
                                 size: 40.sp,
                                 color: Colors.white,
                               ),
-                              const CustomText(
-                                text: 'teamA',
-                                color: Colors.white,
+                               Obx(()=>
+                                CustomText(
+                                  text: matchDetailController.matchDetailData.value.teams?[0].name,
+                                  color: Colors.white,
                               ),
+                               ),
                             ],
                           ),
                         ),
@@ -97,8 +102,8 @@ class MatchDetailScreen extends StatelessWidget {
                                 size: 40.sp,
                                 color: Colors.white,
                               ),
-                              const CustomText(
-                                text: 'teamB',
+                               CustomText(
+                                text: matchDetailController.matchDetailData.value.teams?[1].name,
                                 color: Colors.white,
                               ),
                             ],

@@ -29,9 +29,13 @@ class ApiRepo {
   Future<MatchDetailModel> getMatchesDetail(String matchID) async {
     try {
       final response = await apiUtils.get(
-          url: "${ApiConstant.baseUrl}Matches/$matchID/v1/en");
-      final match = response.data;
-      return MatchDetailModel.fromJson(match);
+          url: "${ApiConstant.baseUrl}en/match/soccer/full/$matchID",
+          queryParameters: {
+            "oddsPresentationConfigsId": "SNAPSCORE_APP_MAIN_MARKETS_V1"
+          }
+      );
+      final matchDetail = response.data;
+      return MatchDetailModel.fromJson(matchDetail);
     } catch (e) {
       throw CustomException(e.toString());
     }
