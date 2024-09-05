@@ -1,5 +1,5 @@
 import 'package:football_live_score/models/match_model.dart';
-import 'package:football_live_score/models/team.dart';
+import 'package:football_live_score/models/team_model.dart';
 import 'package:football_live_score/services/api_utils.dart';
 
 import '../models/match_detail_model.dart';
@@ -32,8 +32,7 @@ class ApiRepo {
           url: "${ApiConstant.baseUrl}en/match/soccer/full/$matchID",
           queryParameters: {
             "oddsPresentationConfigsId": "SNAPSCORE_APP_MAIN_MARKETS_V1"
-          }
-      );
+          });
       final matchDetail = response.data;
       return MatchDetailModel.fromJson(matchDetail);
     } catch (e) {
@@ -42,12 +41,12 @@ class ApiRepo {
   }
 
   ///Team
-  Future<Team> getTeam(String teamId) async {
+  Future<TeamModel> getTeam(String teamId) async {
     try {
       final response = await apiUtils.get(
           url: "${ApiConstant.baseUrl}en/team/soccer/teampage/$teamId");
       final team = response.data;
-      return Team.fromJson(team);
+      return TeamModel.fromJson(team);
     } catch (e) {
       throw CustomException(e.toString());
     }

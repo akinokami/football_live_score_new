@@ -1,4 +1,4 @@
-class Team {
+class TeamModel {
   String? name;
   String? id;
   int? gender;
@@ -7,7 +7,7 @@ class Team {
   List<Results>? results;
   List<Fixtures>? fixtures;
 
-  Team(
+  TeamModel(
       {this.name,
       this.id,
       this.gender,
@@ -16,7 +16,7 @@ class Team {
       this.results,
       this.fixtures});
 
-  Team.fromJson(Map<String, dynamic> json) {
+  TeamModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     id = json['id'];
     gender = json['gender'];
