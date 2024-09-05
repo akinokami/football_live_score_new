@@ -11,7 +11,6 @@ class MatchDetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-   
   }
 
   Future<void> getMatchesDetail(String matchID) async {
