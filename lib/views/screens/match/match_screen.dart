@@ -18,11 +18,13 @@ class MatchScreen extends StatelessWidget {
     final matchController = Get.put(MatchController());
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: secondaryColor,
         elevation: 0,
         centerTitle: true,
         title: CustomText(
           text: 'matches'.tr,
           fontSize: 15.sp,
+          color: whiteColor,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -92,6 +94,7 @@ class MatchScreen extends StatelessWidget {
                                                   Icon(
                                                     Icons.sports_soccer,
                                                     size: 18.sp,
+                                                    color: secondaryColor,
                                                   ),
                                                   SizedBox(
                                                     width: 10.w,
@@ -137,6 +140,7 @@ class MatchScreen extends StatelessWidget {
                                                   Icon(
                                                     Icons.sports_soccer,
                                                     size: 18.sp,
+                                                    color: secondaryColor,
                                                   ),
                                                   Column(
                                                     children: [
@@ -148,6 +152,7 @@ class MatchScreen extends StatelessWidget {
                                                   Icon(
                                                     Icons.sports_soccer,
                                                     size: 18.sp,
+                                                    color: secondaryColor,
                                                   ),
                                                   SizedBox(
                                                     width: 1.sw * 0.25,
@@ -165,27 +170,27 @@ class MatchScreen extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              kSizedBoxH10,
-                                              Visibility(
-                                                  visible: ((matchController
-                                                                      .match
-                                                                      .value
-                                                                      .matches ??
-                                                                  [])
-                                                              .length >
-                                                          index + 1)
-                                                      ? (matchController.match.value
-                                                                              .matches ??
-                                                                          [])[
-                                                                      index + 1]
-                                                                  .type !=
-                                                              3
-                                                          ? true
-                                                          : false
-                                                      : false,
-                                                  child: Divider(
-                                                      height: 1.h,
-                                                      color: grey)),
+                                              kSizedBoxH5,
+                                              // Visibility(
+                                              //     visible: ((matchController
+                                              //                         .match
+                                              //                         .value
+                                              //                         .matches ??
+                                              //                     [])
+                                              //                 .length >
+                                              //             index + 1)
+                                              //         ? (matchController.match.value
+                                              //                                 .matches ??
+                                              //                             [])[
+                                              //                         index + 1]
+                                              //                     .type !=
+                                              //                 3
+                                              //             ? true
+                                              //             : false
+                                              //         : false,
+                                              //     child: Divider(
+                                              //         height: 1.h,
+                                              //         color: grey)),
                                             ],
                                           ),
                                         ),
