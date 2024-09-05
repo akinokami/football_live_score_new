@@ -102,6 +102,7 @@ class Matches {
   String? id;
   List<Pids>? pids;
   int? ut;
+  String? statusText;
   int? status;
   int? pStatus;
   int? oStatus;
@@ -135,6 +136,7 @@ class Matches {
       this.id,
       this.pids,
       this.ut,
+        this.statusText,
       this.status,
       this.pStatus,
       this.oStatus,
@@ -173,6 +175,7 @@ class Matches {
       });
     }
     ut = json['ut'];
+    statusText = json['status_txt'];
     status = json['status'];
     pStatus = json['p_status'];
     oStatus = json['o_status'];
@@ -215,6 +218,7 @@ class Matches {
       data['pids'] = pids!.map((v) => v.toJson()).toList();
     }
     data['ut'] = ut;
+    data['status_txt'] = statusText;
     data['status'] = status;
     data['p_status'] = pStatus;
     data['o_status'] = oStatus;

@@ -14,7 +14,7 @@ class ApiRepo {
     try {
       final response = await apiUtils.get(
           url:
-              "${ApiConstant.baseUrl}en/matches/soccer/from/2024-09-05T16:00:00/to/2024-09-06T15:59:59",
+              "${ApiConstant.baseUrl}en/matches/soccer/from/2024-09-04T16:00:00/to/2024-09-06T15:59:59",
           queryParameters: {
             "oddsPresentationConfigsId": "SNAPSCORE_APP_1X2_V1"
           });

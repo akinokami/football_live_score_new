@@ -46,48 +46,81 @@ class MatchScreen extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: matchController.matches.length,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                // matchDetailController
-                                //     .getMatchesDetail('1-2874806');
-                                // Get.to(() => MatchDetailScreen());
+                            return CustomCard(
+                              widget: Column(
+                                children: [
+                                  // Row(
+                                  //   children: [
+                                      // Icon(
+                                      //   Icons.sports_soccer,
+                                      //   size: 18.sp,
+                                      //   color: secondaryColor,
+                                      // ),
+                                      // SizedBox(
+                                      //   width: 10.w,
+                                      // ),
+                                      Expanded(
+                                        child: CustomText(
+                                          fontWeight: FontWeight.w500,
+                                          //color: greyColor.withOpacity(0.5),
+                                          text:
+                                              "${matchController.matches[index].cName ?? ''} ${matchController.matches[index].stName ?? ''}",
+                                          isEllip: true,
+                                        ),
+                                      ),
+                                    // ],
+                                 // ),
+                                  kSizedBoxH5,
+                                  Divider(height: 1.h, color: grey.withOpacity(0.3)),
+                                  kSizedBoxH10,
+                                  ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: matchController
+                                          .matches[index].matches?.length,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, index1) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            matchDetailController
+                                                .getMatchesDetail(
+                                                    matchController
+                                                            .matches[index]
+                                                            .matches?[index1]
+                                                            .id ??
+                                                        '');
+                                            Get.to(() =>
+                                                 MatchDetailScreen(status: (matchController
+                                                    .matches[
+                                                index]
+                                                    .matches?[
+                                                index1]
+                                                    .status ??
+                                                    0) ==
+                                                    6
+                                                    ? 'FT'
+                                                    : (matchController
+                                                    .matches[
+                                                index]
+                                                    .matches?[
+                                                index1]
+                                                    .status ??
+                                                    0) ==
+                                                    1
+                                                    ? (("${matchController.matches[index].matches?[index1].start.toString().split("")[8]}${matchController.matches[index].matches?[index1].start.toString().split("")[9]}:${matchController.matches[index].matches?[index1].start.toString().split("")[10]}${matchController.matches[index].matches?[index1].start.toString().split("")[11]}") ??
+                                                    "")
+                                                    : (matchController
+                                                    .matches[
+                                                index]
+                                                    .matches?[
+                                                index1]
+                                                    .statusText ??
+                                                    ''),));
 
-                                Get.to(() => const TeamScreen(),
-                                    arguments: {'teamId': '1-1651'});
-                              },
-                              child: CustomCard(
-                                widget: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.sports_soccer,
-                                          size: 18.sp,
-                                          color: secondaryColor,
-                                        ),
-                                        SizedBox(
-                                          width: 10.w,
-                                        ),
-                                        Expanded(
-                                          child: CustomText(
-                                            text:
-                                                "${matchController.matches[index].cName ?? ''} ${matchController.matches[index].stName ?? ''}",
-                                            isEllip: true,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    kSizedBoxH5,
-                                    Divider(height: 1.h, color: grey),
-                                    kSizedBoxH10,
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: matchController
-                                            .matches[index].matches?.length,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemBuilder: (context, index1) {
-                                          return Padding(
+                                            // Get.to(() => const TeamScreen(),
+                                            //     arguments: {'teamId': '1-1651'});
+                                          },
+                                          child: Padding(
                                             padding:
                                                 EdgeInsets.only(bottom: 10.h),
                                             child: Row(
@@ -111,11 +144,14 @@ class MatchScreen extends StatelessWidget {
                                                                 .matches?[
                                                                     index1]
                                                                 .teams?[0]
-                                                                .cname ??
+                                                                .name ??
                                                             '')
                                                         : '',
                                                     textAlign: TextAlign.right,
                                                     maxLines: 2,
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: greyColor.withOpacity(0.7),
                                                   ),
                                                 ),
                                                 Icon(
@@ -125,8 +161,67 @@ class MatchScreen extends StatelessWidget {
                                                 ),
                                                 Column(
                                                   children: [
-                                                    CustomText(text: '2 - 1'),
-                                                    CustomText(text: 'Finished')
+                                                   if((matchController
+                                                       .matches[
+                                                   index]
+                                                       .matches?[
+                                                   index1]
+                                                       .status ??
+                                                       0) ==
+                                                       6 || (matchController
+                                                           .matches[
+                                                       index]
+                                                           .matches?[
+                                                       index1]
+                                                           .status ??
+                                                           0) ==
+                                                       10||(matchController
+                                                       .matches[
+                                                   index]
+                                                       .matches?[
+                                                   index1]
+                                                       .status ??
+                                                       0) ==
+                                                       3 ||(matchController
+                                                       .matches[
+                                                   index]
+                                                       .matches?[
+                                                   index1]
+                                                       .status ??
+                                                       0) ==
+                                                       17) CustomText(
+                                                     fontWeight: FontWeight.w500,
+                                                        text:
+                                                            '${matchController.matches[index].matches?[index1].ftScore?[0] ?? ''} - ${matchController.matches[index].matches?[index1].ftScore?[1] ?? ''}'),
+                                                    CustomText(
+                                                      color:greyColor.withOpacity(0.5),
+                                                        fontWeight: FontWeight.w500,
+                                                        text: (matchController
+                                                                        .matches[
+                                                                            index]
+                                                                        .matches?[
+                                                                            index1]
+                                                                        .status ??
+                                                                    0) ==
+                                                                6
+                                                            ? 'FT'
+                                                            : (matchController
+                                                                            .matches[
+                                                                                index]
+                                                                            .matches?[
+                                                                                index1]
+                                                                            .status ??
+                                                                        0) ==
+                                                                    1
+                                                                ? (("${matchController.matches[index].matches?[index1].start.toString().split("")[8]}${matchController.matches[index].matches?[index1].start.toString().split("")[9]}:${matchController.matches[index].matches?[index1].start.toString().split("")[10]}${matchController.matches[index].matches?[index1].start.toString().split("")[11]}") ??
+                                                                    "")
+                                                                : (matchController
+                                                                        .matches[
+                                                                            index]
+                                                                        .matches?[
+                                                                            index1]
+                                                                        .statusText ??
+                                                                    ''))
                                                   ],
                                                 ),
                                                 Icon(
@@ -151,19 +246,22 @@ class MatchScreen extends StatelessWidget {
                                                                 .matches?[
                                                                     index1]
                                                                 .teams?[1]
-                                                                .cname ??
+                                                                .name ??
                                                             '')
                                                         : '',
                                                     textAlign: TextAlign.left,
                                                     maxLines: 2,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 10.sp,
+                                                    color: greyColor.withOpacity(0.7),
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                          );
-                                        })
-                                  ],
-                                ),
+                                          ),
+                                        );
+                                      })
+                                ],
                               ),
                             );
                           }),

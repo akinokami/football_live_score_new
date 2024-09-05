@@ -7,7 +7,9 @@ import '../../../utils/color_const.dart';
 import '../../widgets/custom_text.dart';
 
 class OverallWidget extends StatelessWidget {
-  const OverallWidget({super.key});
+  const OverallWidget({super.key, required this.date, required this.name});
+  final String date;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class OverallWidget extends StatelessWidget {
                   SizedBox(
                     width: 10.w,
                   ),
-                  CustomText(text: '4 September 2024, Wednesday')
+                  CustomText(text: date)
                 ],
               ),
               kSizedBoxH5,
@@ -39,7 +41,7 @@ class OverallWidget extends StatelessWidget {
                   SizedBox(
                     width: 10.w,
                   ),
-                  CustomText(text: 'Friendly Match')
+                  CustomText(text: name)
                 ],
               )
             ],
