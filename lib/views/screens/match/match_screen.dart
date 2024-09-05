@@ -6,6 +6,7 @@ import 'package:football_live_score/views/screens/match/match_detail_screen.dart
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/match_detail_controller.dart';
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/custom_text.dart';
@@ -16,6 +17,7 @@ class MatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchController = Get.put(MatchController());
+    final matchDetailController = Get.put(MatchDetailController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
@@ -44,7 +46,8 @@ class MatchScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                Get.to(() => MatchDetailScreen());
+                                matchDetailController.getMatchesDetail('1-2874806');
+                                Get.to(() =>const MatchDetailScreen());
                               },
                               child: CustomCard(
                                 widget: Column(

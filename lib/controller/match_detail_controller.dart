@@ -4,7 +4,7 @@ import '../services/api_repo.dart';
 import '../utils/color_const.dart';
 import '../utils/constants.dart';
 
-class MatchController extends GetxController {
+class MatchDetailController extends GetxController {
   final isLoading = false.obs;
   Rx<MatchDetailModel> matchDetailData = MatchDetailModel().obs;
 
