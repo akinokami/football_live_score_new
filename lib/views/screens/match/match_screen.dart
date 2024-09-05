@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/controller/match_controller.dart';
+import 'package:football_live_score/controller/match_detail_controller.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
 import 'package:football_live_score/views/screens/match/match_detail_screen.dart';
 import 'package:football_live_score/views/widgets/custom_loading.dart';
@@ -16,7 +17,7 @@ class MatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchController = Get.put(MatchController());
-    final matchDetailController = Get.put(Matc)
+    final matchDetailController = Get.put(MatchDetailController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
