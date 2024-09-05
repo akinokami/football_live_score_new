@@ -78,7 +78,7 @@ class MatchScreen extends StatelessWidget {
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index1) {
-                                        return GestureDetector(
+                                        return InkWell(
                                           onTap: () {
                                             matchDetailController
                                                 .getMatchesDetail(
@@ -121,7 +121,7 @@ class MatchScreen extends StatelessWidget {
                                           },
                                           child: Padding(
                                             padding:
-                                                EdgeInsets.only(bottom: 10.h),
+                                                EdgeInsets.only(bottom: 15.h),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
