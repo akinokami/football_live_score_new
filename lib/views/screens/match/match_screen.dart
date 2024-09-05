@@ -33,18 +33,20 @@ class MatchScreen extends StatelessWidget {
             ? const Center(
                 child: CustomLoading(),
               )
-            : Container(
-                color: greyTicket,
-                child: Padding(
-                  padding: EdgeInsets.all(5.w),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: matchController.matches.length,
-                            itemBuilder: (context, index) {
-                              return CustomCard(
+            : Padding(
+                padding: EdgeInsets.all(5.w),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: matchController.matches.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => MatchDetailScreen());
+                              },
+                              child: CustomCard(
                                 widget: Column(
                                   children: [
                                     Row(
@@ -56,7 +58,13 @@ class MatchScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 10.w,
                                         ),
-                                        CustomText(text: 'Barzil - Series B')
+                                        Expanded(
+                                          child: CustomText(
+                                            text:
+                                                "${matchController.matches[index].cName ?? ''} ${matchController.matches[index].stName ?? ''}",
+                                            isEllip: true,
+                                          ),
+                                        )
                                       ],
                                     ),
                                     kSizedBoxH5,
@@ -90,14 +98,13 @@ class MatchScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    kSizedBoxH10,
                                   ],
                                 ),
-                              );
-                            }),
-                      )
-                    ],
-                  ),
+                              ),
+                            );
+                          }),
+                    )
+                  ],
                 ),
               ),
       ),
