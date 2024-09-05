@@ -9,29 +9,33 @@ class ApiRepo {
   final ApiUtils apiUtils = ApiUtils();
 
   ///Matches
-  Future<MatchModel> getMatches() async {
+  Future<List<MatchModel>> getMatches() async {
     try {
       final response = await apiUtils.get(
           url:
-              "${ApiConstant.baseUrl}Matches/list/date/1725408000/28800/v1/en/[]/[]/1");
-      final match = response.data;
-      return MatchModel.fromJson(match);
+              "${ApiConstant.baseUrl}en/matches/soccer/from/2024-09-05T16:00:00/to/2024-09-06T15:59:59",
+          queryParameters: {
+            "oddsPresentationConfigsId": "SNAPSCORE_APP_1X2_V1"
+          });
+      final matches = response.data as List;
+      return matches.map((item) => MatchModel.fromJson(item)).toList();
     } catch (e) {
       throw CustomException(e.toString());
     }
   }
+
   ///Matches Detail
   Future<MatchDetailModel> getMatchesDetail(String matchID) async {
     try {
       final response = await apiUtils.get(
-          url:
-          "${ApiConstant.baseUrl}Matches/$matchID/v1/en");
+          url: "${ApiConstant.baseUrl}Matches/$matchID/v1/en");
       final match = response.data;
       return MatchDetailModel.fromJson(match);
     } catch (e) {
       throw CustomException(e.toString());
     }
   }
+
   /// Movie
   // Future<List<SliderModel>> getMovieSlider() async {
   //   try {

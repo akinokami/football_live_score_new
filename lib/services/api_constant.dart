@@ -1,3 +1,3 @@
 class ApiConstant {
-  static String baseUrl = 'https://api.90-scores.com/';
+  static String baseUrl = 'https://api.soccerdesk.com/v1/';
 }

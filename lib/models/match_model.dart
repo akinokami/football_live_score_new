@@ -1,359 +1,334 @@
 class MatchModel {
-  List<Matches>? followingList;
+  String? cName;
+  String? cCode;
+  String? cId;
+  String? cFlag;
+  String? stName;
+  String? stCode;
+  String? stId;
+  int? stOrder;
+  int? noTable;
+  int? noDraw;
+  int? noScorers;
+  int? noTeamStats;
+  int? noTracker;
+  List<String>? countryCodes;
+  int? highlighted;
+  int? isPopular;
   List<Matches>? matches;
-  List<Matches>? liveMatches;
 
-  MatchModel({this.followingList, this.matches, this.liveMatches});
+  MatchModel(
+      {this.cName,
+      this.cCode,
+      this.cId,
+      this.cFlag,
+      this.stName,
+      this.stCode,
+      this.stId,
+      this.stOrder,
+      this.noTable,
+      this.noDraw,
+      this.noScorers,
+      this.noTeamStats,
+      this.noTracker,
+      this.countryCodes,
+      this.highlighted,
+      this.isPopular,
+      this.matches});
 
   MatchModel.fromJson(Map<String, dynamic> json) {
-    if (json['following_list'] != null) {
-      followingList = <Matches>[];
-      json['following_list'].forEach((v) {
-        followingList!.add(Matches.fromJson(v));
-      });
-    }
+    cName = json['c_name'];
+    cCode = json['c_code'];
+    cId = json['c_id'];
+    cFlag = json['c_flag'];
+    stName = json['st_name'];
+    stCode = json['st_code'];
+    stId = json['st_id'];
+    stOrder = json['st_order'];
+    noTable = json['noTable'];
+    noDraw = json['noDraw'];
+    noScorers = json['noScorers'];
+    noTeamStats = json['noTeamStats'];
+    noTracker = json['noTracker'];
+    countryCodes = json['countryCodes'].cast<String>();
+    highlighted = json['highlighted'];
+    isPopular = json['isPopular'];
     if (json['matches'] != null) {
       matches = <Matches>[];
       json['matches'].forEach((v) {
         matches!.add(Matches.fromJson(v));
       });
     }
-    if (json['live_matches'] != null) {
-      liveMatches = <Matches>[];
-      json['live_matches'].forEach((v) {
-        liveMatches!.add(Matches.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (followingList != null) {
-      data['following_list'] = followingList!.map((v) => v.toJson()).toList();
-    }
+    data['c_name'] = cName;
+    data['c_code'] = cCode;
+    data['c_id'] = cId;
+    data['c_flag'] = cFlag;
+    data['st_name'] = stName;
+    data['st_code'] = stCode;
+    data['st_id'] = stId;
+    data['st_order'] = stOrder;
+    data['noTable'] = noTable;
+    data['noDraw'] = noDraw;
+    data['noScorers'] = noScorers;
+    data['noTeamStats'] = noTeamStats;
+    data['noTracker'] = noTracker;
+    data['countryCodes'] = countryCodes;
+    data['highlighted'] = highlighted;
+    data['isPopular'] = isPopular;
     if (matches != null) {
       data['matches'] = matches!.map((v) => v.toJson()).toList();
-    }
-    if (liveMatches != null) {
-      data['live_matches'] = liveMatches!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Matches {
-  int? seasonId;
-  Tournament? tournament;
-  int? type;
-  int? iId;
-  AwayScore? awayScore;
-  AwayScore? homeScore;
-  League? awayTeam;
-  League? homeTeam;
-  Season? season;
-  int? startTimestamp;
-  Status? status;
-  Time? time;
-  int? lastUpdated;
+  int? pid;
+  int? sId;
+  String? sCode;
+  String? cId;
+  String? cName;
+  String? cFlag;
+  String? cCode;
+  String? stId;
+  String? stName;
+  int? stGender;
+  String? stCode;
+  int? format;
+  String? id;
+  List<Pids>? pids;
+  int? ut;
+  int? status;
+  int? pStatus;
+  int? oStatus;
+  int? poStatus;
+  int? elapsedT;
+  String? round;
+  int? start;
+  int? cov;
+  List<int>? score;
+  List<int>? ftScore;
+  int? highlighted;
+  int? canEndWithDraw;
+  String? season;
+  int? noTable;
+  int? noScorers;
+  List<Teams>? teams;
 
   Matches(
-      {this.seasonId,
-      this.tournament,
-      this.type,
-      this.iId,
-      this.awayScore,
-      this.homeScore,
-      this.awayTeam,
-      this.homeTeam,
-      this.season,
-      this.startTimestamp,
+      {this.pid,
+      this.sId,
+      this.sCode,
+      this.cId,
+      this.cName,
+      this.cFlag,
+      this.cCode,
+      this.stId,
+      this.stName,
+      this.stGender,
+      this.stCode,
+      this.format,
+      this.id,
+      this.pids,
+      this.ut,
       this.status,
-      this.time,
-      this.lastUpdated});
+      this.pStatus,
+      this.oStatus,
+      this.poStatus,
+      this.elapsedT,
+      this.round,
+      this.start,
+      this.cov,
+      this.score,
+      this.ftScore,
+      this.highlighted,
+      this.canEndWithDraw,
+      this.season,
+      this.noTable,
+      this.noScorers,
+      this.teams});
 
   Matches.fromJson(Map<String, dynamic> json) {
-    seasonId = json['season_id'];
-    tournament = json['tournament'] != null
-        ? Tournament.fromJson(json['tournament'])
-        : null;
-    type = json['type'];
-    iId = json['_id'];
-    awayScore = json['awayScore'] != null
-        ? AwayScore.fromJson(json['awayScore'])
-        : null;
-    homeScore = json['homeScore'] != null
-        ? AwayScore.fromJson(json['homeScore'])
-        : null;
-    awayTeam =
-        json['awayTeam'] != null ? League.fromJson(json['awayTeam']) : null;
-    homeTeam =
-        json['homeTeam'] != null ? League.fromJson(json['homeTeam']) : null;
-    season = json['season'] != null ? Season.fromJson(json['season']) : null;
-    startTimestamp = json['startTimestamp'];
-    status = json['status'] != null ? Status.fromJson(json['status']) : null;
-    time = json['time'] != null ? Time.fromJson(json['time']) : null;
-    lastUpdated = json['lastUpdated'];
+    pid = json['pid'];
+    sId = json['s_id'];
+    sCode = json['s_code'];
+    cId = json['c_id'];
+    cName = json['c_name'];
+    cFlag = json['c_flag'];
+    cCode = json['c_code'];
+    stId = json['st_id'];
+    stName = json['st_name'];
+    stGender = json['st_gender'];
+    stCode = json['st_code'];
+    format = json['format'];
+    id = json['id'];
+    if (json['pids'] != null) {
+      pids = <Pids>[];
+      json['pids'].forEach((v) {
+        pids!.add(Pids.fromJson(v));
+      });
+    }
+    ut = json['ut'];
+    status = json['status'];
+    pStatus = json['p_status'];
+    oStatus = json['o_status'];
+    poStatus = json['po_status'];
+    elapsedT = json['elapsed_t'];
+    round = json['round'];
+    start = json['start'];
+    cov = json['cov'];
+    score = json['score'].cast<int>();
+    ftScore = json['ft_score'].cast<int>();
+    highlighted = json['highlighted'];
+    canEndWithDraw = json['can_end_with_draw'];
+    season = json['season'];
+    noTable = json['noTable'];
+    noScorers = json['noScorers'];
+    if (json['teams'] != null) {
+      teams = <Teams>[];
+      json['teams'].forEach((v) {
+        teams!.add(Teams.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['season_id'] = seasonId;
-    if (tournament != null) {
-      data['tournament'] = tournament!.toJson();
+    data['pid'] = pid;
+    data['s_id'] = sId;
+    data['s_code'] = sCode;
+    data['c_id'] = cId;
+    data['c_name'] = cName;
+    data['c_flag'] = cFlag;
+    data['c_code'] = cCode;
+    data['st_id'] = stId;
+    data['st_name'] = stName;
+    data['st_gender'] = stGender;
+    data['st_code'] = stCode;
+    data['format'] = format;
+    data['id'] = id;
+    if (pids != null) {
+      data['pids'] = pids!.map((v) => v.toJson()).toList();
     }
-    data['type'] = type;
-    data['_id'] = iId;
-    if (awayScore != null) {
-      data['awayScore'] = awayScore!.toJson();
+    data['ut'] = ut;
+    data['status'] = status;
+    data['p_status'] = pStatus;
+    data['o_status'] = oStatus;
+    data['po_status'] = poStatus;
+    data['elapsed_t'] = elapsedT;
+    data['round'] = round;
+    data['start'] = start;
+    data['cov'] = cov;
+    data['score'] = score;
+    data['ft_score'] = ftScore;
+    data['highlighted'] = highlighted;
+    data['can_end_with_draw'] = canEndWithDraw;
+    data['season'] = season;
+    data['noTable'] = noTable;
+    data['noScorers'] = noScorers;
+    if (teams != null) {
+      data['teams'] = teams!.map((v) => v.toJson()).toList();
     }
-    if (homeScore != null) {
-      data['homeScore'] = homeScore!.toJson();
-    }
-    if (awayTeam != null) {
-      data['awayTeam'] = awayTeam!.toJson();
-    }
-    if (homeTeam != null) {
-      data['homeTeam'] = homeTeam!.toJson();
-    }
-    if (season != null) {
-      data['season'] = season!.toJson();
-    }
-    data['startTimestamp'] = startTimestamp;
-    if (status != null) {
-      data['status'] = status!.toJson();
-    }
-    if (time != null) {
-      data['time'] = time!.toJson();
-    }
-    data['lastUpdated'] = lastUpdated;
     return data;
   }
 }
 
-class Tournament {
-  int? iId;
-  String? name;
-  Country? country;
-  League? league;
+class Pids {
+  int? pid;
+  String? id;
 
-  Tournament({this.iId, this.name, this.country, this.league});
+  Pids({this.pid, this.id});
 
-  Tournament.fromJson(Map<String, dynamic> json) {
-    iId = json['_id'];
-    name = json['name'];
-    country =
-        json['country'] != null ? Country.fromJson(json['country']) : null;
-    league = json['league'] != null ? League.fromJson(json['league']) : null;
+  Pids.fromJson(Map<String, dynamic> json) {
+    pid = json['pid'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = iId;
-    data['name'] = name;
-    if (country != null) {
-      data['country'] = country!.toJson();
-    }
-    if (league != null) {
-      data['league'] = league!.toJson();
-    }
+    data['pid'] = pid;
+    data['id'] = id;
     return data;
   }
 }
 
-class Country {
-  String? sId;
+class Teams {
+  String? id;
   String? name;
+  int? gender;
+  String? cid;
+  String? cname;
+  String? cflag;
+  int? pos;
+  int? idx;
+  int? kn;
+  int? ptrn;
+  int? assists;
+  int? goals;
+  int? ownGoals;
+  int? red;
+  int? yellow;
+  int? i2ndYellow;
 
-  Country({this.sId, this.name});
-
-  Country.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
-    data['name'] = name;
-    return data;
-  }
-}
-
-class League {
-  int? iId;
-  String? name;
-  String? primaryColorHex;
-  String? secondaryColorHex;
-  Country? country;
-
-  League(
-      {this.iId,
+  Teams(
+      {this.id,
       this.name,
-      this.primaryColorHex,
-      this.secondaryColorHex,
-      this.country});
+      this.gender,
+      this.cid,
+      this.cname,
+      this.cflag,
+      this.pos,
+      this.idx,
+      this.kn,
+      this.ptrn,
+      this.assists,
+      this.goals,
+      this.ownGoals,
+      this.red,
+      this.yellow,
+      this.i2ndYellow});
 
-  League.fromJson(Map<String, dynamic> json) {
-    iId = json['_id'];
+  Teams.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     name = json['name'];
-    primaryColorHex = json['primaryColorHex'];
-    secondaryColorHex = json['secondaryColorHex'];
-    country =
-        json['country'] != null ? Country.fromJson(json['country']) : null;
+    gender = json['gender'];
+    cid = json['cid'];
+    cname = json['cname'];
+    cflag = json['cflag'];
+    pos = json['pos'];
+    idx = json['idx'];
+    kn = json['kn'];
+    ptrn = json['ptrn'];
+    assists = json['assists'];
+    goals = json['goals'];
+    ownGoals = json['own_goals'];
+    red = json['red'];
+    yellow = json['yellow'];
+    i2ndYellow = json['2nd_yellow'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = iId;
+    data['id'] = id;
     data['name'] = name;
-    data['primaryColorHex'] = primaryColorHex;
-    data['secondaryColorHex'] = secondaryColorHex;
-    if (country != null) {
-      data['country'] = country!.toJson();
-    }
-    return data;
-  }
-}
-
-class AwayScore {
-  int? display;
-  int? period1;
-  int? period2;
-  int? normaltime;
-  int? current;
-  int? extra1;
-  int? extra2;
-  int? overtime;
-  int? penalties;
-
-  AwayScore(
-      {this.display,
-      this.period1,
-      this.period2,
-      this.normaltime,
-      this.current,
-      this.extra1,
-      this.extra2,
-      this.overtime,
-      this.penalties});
-
-  AwayScore.fromJson(Map<String, dynamic> json) {
-    display = json['display'];
-    period1 = json['period1'];
-    period2 = json['period2'];
-    normaltime = json['normaltime'];
-    current = json['current'];
-    extra1 = json['extra1'];
-    extra2 = json['extra2'];
-    overtime = json['overtime'];
-    penalties = json['penalties'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['display'] = display;
-    data['period1'] = period1;
-    data['period2'] = period2;
-    data['normaltime'] = normaltime;
-    data['current'] = current;
-    data['extra1'] = extra1;
-    data['extra2'] = extra2;
-    data['overtime'] = overtime;
-    data['penalties'] = penalties;
-    return data;
-  }
-}
-
-class Season {
-  int? iId;
-  String? name;
-
-  Season({this.iId, this.name});
-
-  Season.fromJson(Map<String, dynamic> json) {
-    iId = json['_id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = iId;
-    data['name'] = name;
-    return data;
-  }
-}
-
-class Status {
-  String? type;
-  int? code;
-  String? description;
-
-  Status({this.type, this.code, this.description});
-
-  Status.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    code = json['code'];
-    description = json['description'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
-    data['code'] = code;
-    data['description'] = description;
-    return data;
-  }
-}
-
-class Time {
-  int? currentPeriodStartTimestamp;
-  int? injuryTime1;
-  int? injuryTime2;
-  int? period1StartTimestamp;
-  int? period2StartTimestamp;
-  int? initial;
-  int? extra;
-  int? max;
-  int? extra1StartTimestamp;
-  int? extra2StartTimestamp;
-
-  Time(
-      {this.currentPeriodStartTimestamp,
-      this.injuryTime1,
-      this.injuryTime2,
-      this.period1StartTimestamp,
-      this.period2StartTimestamp,
-      this.initial,
-      this.extra,
-      this.max,
-      this.extra1StartTimestamp,
-      this.extra2StartTimestamp});
-
-  Time.fromJson(Map<String, dynamic> json) {
-    currentPeriodStartTimestamp = json['currentPeriodStartTimestamp'];
-    injuryTime1 = json['injuryTime1'];
-    injuryTime2 = json['injuryTime2'];
-    period1StartTimestamp = json['period1StartTimestamp'];
-    period2StartTimestamp = json['period2StartTimestamp'];
-    initial = json['initial'];
-    extra = json['extra'];
-    max = json['max'];
-    extra1StartTimestamp = json['extra1StartTimestamp'];
-    extra2StartTimestamp = json['extra2StartTimestamp'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['currentPeriodStartTimestamp'] = currentPeriodStartTimestamp;
-    data['injuryTime1'] = injuryTime1;
-    data['injuryTime2'] = injuryTime2;
-    data['period1StartTimestamp'] = period1StartTimestamp;
-    data['period2StartTimestamp'] = period2StartTimestamp;
-    data['initial'] = initial;
-    data['extra'] = extra;
-    data['max'] = max;
-    data['extra1StartTimestamp'] = extra1StartTimestamp;
-    data['extra2StartTimestamp'] = extra2StartTimestamp;
+    data['gender'] = gender;
+    data['cid'] = cid;
+    data['cname'] = cname;
+    data['cflag'] = cflag;
+    data['pos'] = pos;
+    data['idx'] = idx;
+    data['kn'] = kn;
+    data['ptrn'] = ptrn;
+    data['assists'] = assists;
+    data['goals'] = goals;
+    data['own_goals'] = ownGoals;
+    data['red'] = red;
+    data['yellow'] = yellow;
+    data['2nd_yellow'] = i2ndYellow;
     return data;
   }
 }

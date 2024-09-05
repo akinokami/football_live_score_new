@@ -7,7 +7,7 @@ import '../utils/constants.dart';
 
 class MatchController extends GetxController {
   final isLoading = false.obs;
-  Rx<MatchModel> match = MatchModel().obs;
+  RxList<MatchModel> matches = <MatchModel>[].obs;
 
   @override
   void onInit() {
@@ -19,7 +19,7 @@ class MatchController extends GetxController {
     isLoading.value = true;
     try {
       final result = await ApiRepo().getMatches();
-      match.value = result;
+      matches.value = result;
     } catch (e) {
       constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);
     } finally {
