@@ -1,6 +1,7 @@
 import 'package:football_live_score/models/match_model.dart';
 import 'package:football_live_score/services/api_utils.dart';
 
+import '../models/match_detail_model.dart';
 import '../utils/custom_exception.dart';
 import 'api_constant.dart';
 
@@ -19,7 +20,18 @@ class ApiRepo {
       throw CustomException(e.toString());
     }
   }
-
+  ///Matches Detail
+  Future<MatchDetailModel> getMatchesDetail(String matchID) async {
+    try {
+      final response = await apiUtils.get(
+          url:
+          "${ApiConstant.baseUrl}Matches/$matchID/v1/en");
+      final match = response.data;
+      return MatchDetailModel.fromJson(match);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
   /// Movie
   // Future<List<SliderModel>> getMovieSlider() async {
   //   try {
