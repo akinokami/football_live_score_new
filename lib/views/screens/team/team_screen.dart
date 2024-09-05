@@ -92,10 +92,15 @@ class TeamScreen extends StatelessWidget {
                           TeamResultWidget(
                             results: teamController.team.value.results ?? [],
                           ),
-                          SquardWidget(
-                            players: teamController.players,
-                            coach: teamController.coach,
-                          )
+                          teamController.players.isEmpty &&
+                                  teamController.coach.isEmpty
+                              ? Center(
+                                  child: CustomText(text: 'no_data'.tr),
+                                )
+                              : SquardWidget(
+                                  players: teamController.players,
+                                  coach: teamController.coach,
+                                )
                         ],
                       ),
                     ),

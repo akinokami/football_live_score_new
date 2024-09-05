@@ -87,7 +87,8 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
                                   },
                                 ),
                                 SizedBox(
-                                  width:MediaQuery.of(context).size.width * 0.5,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
                                   child: CustomText(
                                     text: 'agree'.tr,
                                     fontSize: 12.sp,
@@ -170,6 +171,14 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
                   Icons.settings,
                   size: 18.w,
                 ),
+                label: 'live'.tr,
+                backgroundColor: primaryColor,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings,
+                  size: 18.w,
+                ),
                 label: 'settings'.tr,
                 backgroundColor: primaryColor,
               ),
@@ -190,6 +199,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
       body: Obx(() => IndexedStack(
             index: bottomNavController.tabIndex.value,
             children: const [
+              MatchScreen(),
               MatchScreen(),
               SettingScreen(),
             ],
