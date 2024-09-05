@@ -58,6 +58,7 @@ class MatchScreen extends StatelessWidget {
                                         Icon(
                                           Icons.sports_soccer,
                                           size: 18.sp,
+                                          color: secondaryColor,
                                         ),
                                         SizedBox(
                                           width: 10.w,
@@ -81,35 +82,79 @@ class MatchScreen extends StatelessWidget {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index1) {
-                                          return Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              SizedBox(
-                                                width: 1.sw * 0.20,
-                                                child:
-                                                    CustomText(text: 'Team A'),
-                                              ),
-                                              Icon(
-                                                Icons.sports_soccer,
-                                                size: 18.sp,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  CustomText(text: '2 - 1'),
-                                                  CustomText(text: 'Finished')
-                                                ],
-                                              ),
-                                              Icon(
-                                                Icons.sports_soccer,
-                                                size: 18.sp,
-                                              ),
-                                              SizedBox(
-                                                width: 1.sw * 0.20,
-                                                child:
-                                                    CustomText(text: 'Team B'),
-                                              ),
-                                            ],
+                                          return Padding(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10.h),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(
+                                                  width: 1.sw * 0.25,
+                                                  child: CustomText(
+                                                    text: (matchController
+                                                                    .matches[
+                                                                        index]
+                                                                    .matches?[
+                                                                        index1]
+                                                                    .teams ??
+                                                                [])
+                                                            .isNotEmpty
+                                                        ? (matchController
+                                                                .matches[index]
+                                                                .matches?[
+                                                                    index1]
+                                                                .teams?[0]
+                                                                .cname ??
+                                                            '')
+                                                        : '',
+                                                    textAlign: TextAlign.right,
+                                                    maxLines: 2,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.sports_soccer,
+                                                  size: 18.sp,
+                                                  color: secondaryColor,
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    CustomText(text: '2 - 1'),
+                                                    CustomText(text: 'Finished')
+                                                  ],
+                                                ),
+                                                Icon(
+                                                  Icons.sports_soccer,
+                                                  size: 18.sp,
+                                                  color: secondaryColor,
+                                                ),
+                                                SizedBox(
+                                                  width: 1.sw * 0.25,
+                                                  child: CustomText(
+                                                    text: (matchController
+                                                                        .matches[
+                                                                            index]
+                                                                        .matches?[
+                                                                            index1]
+                                                                        .teams ??
+                                                                    [])
+                                                                .length >
+                                                            1
+                                                        ? (matchController
+                                                                .matches[index]
+                                                                .matches?[
+                                                                    index1]
+                                                                .teams?[1]
+                                                                .cname ??
+                                                            '')
+                                                        : '',
+                                                    textAlign: TextAlign.left,
+                                                    maxLines: 2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         })
                                   ],

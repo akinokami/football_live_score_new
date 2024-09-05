@@ -1,4 +1,5 @@
 import 'package:football_live_score/models/match_model.dart';
+import 'package:football_live_score/models/team.dart';
 import 'package:football_live_score/services/api_utils.dart';
 
 import '../models/match_detail_model.dart';
@@ -31,6 +32,18 @@ class ApiRepo {
           url: "${ApiConstant.baseUrl}Matches/$matchID/v1/en");
       final match = response.data;
       return MatchDetailModel.fromJson(match);
+    } catch (e) {
+      throw CustomException(e.toString());
+    }
+  }
+
+  ///Team
+  Future<Team> getTeam(String teamId) async {
+    try {
+      final response = await apiUtils.get(
+          url: "${ApiConstant.baseUrl}en/team/soccer/teampage/$teamId");
+      final team = response.data;
+      return Team.fromJson(team);
     } catch (e) {
       throw CustomException(e.toString());
     }
