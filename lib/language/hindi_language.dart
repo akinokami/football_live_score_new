@@ -24,6 +24,7 @@ class HiLanguage {
     'squad': 'दस्ता',
     'players': 'खिलाड़ी',
     'coach': 'प्रशिक्षक',
-    'team': 'टीम'
+    'team': 'टीम',
+    'standings': 'स्टैंडिंग'
   };
 }

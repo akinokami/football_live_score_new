@@ -169,7 +169,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.settings,
+                  Icons.tv,
                   size: 18.w,
                 ),
                 label: 'live'.tr,

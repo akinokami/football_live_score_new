@@ -24,6 +24,7 @@ class ViLanguage {
     'squad': 'Đội hình',
     'players': 'Người chơi',
     'coach': 'Huấn luyện viên',
-    'team': 'Đội'
+    'team': 'Đội',
+    'standings': 'Bảng xếp hạng'
   };
 }

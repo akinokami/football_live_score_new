@@ -24,6 +24,7 @@ class EnLanguage {
     'squad': 'Squad',
     'players': 'Players',
     'coach': 'Coach',
-    'team': 'Team'
+    'team': 'Team',
+    'standings': 'Standings'
   };
 }

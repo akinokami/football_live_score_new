@@ -6,8 +6,8 @@ import 'package:football_live_score/views/widgets/custom_text.dart';
 
 import '../../../utils/color_const.dart';
 
-class TeamStandingWidget extends StatelessWidget {
-  const TeamStandingWidget({super.key});
+class StandingWidget extends StatelessWidget {
+  const StandingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

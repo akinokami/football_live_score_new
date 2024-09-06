@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/color_const.dart';
+import 'package:football_live_score/utils/function.dart';
 import 'package:football_live_score/views/screens/match/h2h_widget.dart';
+import 'package:football_live_score/views/screens/match/standing_widget.dart';
 import 'package:football_live_score/views/screens/team/team_screen.dart';
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,7 @@ class MatchDetailScreen extends StatelessWidget {
     final matchDetailController = Get.put(MatchDetailController());
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -35,184 +37,189 @@ class MatchDetailScreen extends StatelessWidget {
         body: Obx(() {
           return Center(
             child: matchDetailController.isLoading.value
-                ? CustomLoading()
-                : Column(
-                    children: [
-                      Container(
-                        color: secondaryColor,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(10.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.to(() => const TeamScreen(),
-                                          arguments: {
-                                            'teamId': (matchDetailController
-                                                            .matchDetailData
-                                                            .value
-                                                            .teams ??
-                                                        [])
-                                                    .isNotEmpty
-                                                ? (matchDetailController
-                                                        .matchDetailData
-                                                        .value
-                                                        .teams?[0]
-                                                        .id ??
-                                                    '0')
-                                                : '0'
-                                          });
-                                    },
-                                    child: SizedBox(
-                                      width: 1.sw * 0.25,
-                                      child: Column(
-                                        children: [
-                                          Icon(
-                                            Icons.sports_soccer,
-                                            size: 40.sp,
-                                            color: Colors.white,
-                                          ),
-                                          CustomText(
-                                            maxLines: 2,
-                                            textAlign: TextAlign.center,
-                                            text: matchDetailController
-                                                .matchDetailData
-                                                .value
-                                                .teams?[0]
-                                                .name,
-                                            color: Colors.white,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Column(
+                ? const CustomLoading()
+                : matchDetailController.matchDetailData.value.id == null
+                    ? CustomText(text: 'no_data'.tr)
+                    : Column(
+                        children: [
+                          Container(
+                            color: secondaryColor,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(10.w),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      CustomText(
-                                          text: matchDetailController
-                                              .bindTime.value,
-                                          color: Colors.white),
-                                      Row(
-                                        children: [
-                                          CustomText(
-                                            text: matchDetailController
-                                                .matchDetailData
-                                                .value
-                                                .ftScore?[0]
-                                                .toString(),
-                                            color: Colors.white,
-                                            fontSize: 20.sp,
-                                          ),
-                                          CustomText(
-                                            text: ' - ',
-                                            color: Colors.white,
-                                            fontSize: 20.sp,
-                                          ),
-                                          CustomText(
-                                            text: matchDetailController
-                                                .matchDetailData
-                                                .value
-                                                .ftScore?[1]
-                                                .toString(),
-                                            color: Colors.white,
-                                            fontSize: 20.sp,
-                                          ),
-                                        ],
-                                      ),
-                                      (matchDetailController.matchDetailData
-                                                      .value.ftScore ??
-                                                  [])
-                                              .isNotEmpty
-                                          ? CustomText(
-                                              text: matchDetailController
-                                                  .status.value,
-                                              color: Colors.white,
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.to(() => const TeamScreen(),
-                                          arguments: {
-                                            'teamId': (matchDetailController
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() => const TeamScreen(),
+                                              arguments: {
+                                                'teamId': (matchDetailController
                                                                 .matchDetailData
                                                                 .value
                                                                 .teams ??
                                                             [])
-                                                        .length >
-                                                    1
-                                                ? (matchDetailController
-                                                        .matchDetailData
-                                                        .value
-                                                        .teams?[1]
-                                                        .id ??
-                                                    '0')
-                                                : '0'
-                                          });
-                                    },
-                                    child: SizedBox(
-                                      width: 1.sw * 0.25,
-                                      child: Column(
+                                                        .isNotEmpty
+                                                    ? (matchDetailController
+                                                            .matchDetailData
+                                                            .value
+                                                            .teams?[0]
+                                                            .id ??
+                                                        '0')
+                                                    : '0'
+                                              });
+                                        },
+                                        child: SizedBox(
+                                          width: 1.sw * 0.25,
+                                          child: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.sports_soccer,
+                                                size: 40.sp,
+                                                color: Colors.white,
+                                              ),
+                                              CustomText(
+                                                maxLines: 2,
+                                                textAlign: TextAlign.center,
+                                                text: matchDetailController
+                                                    .matchDetailData
+                                                    .value
+                                                    .teams?[0]
+                                                    .name,
+                                                color: Colors.white,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Column(
                                         children: [
-                                          Icon(
-                                            Icons.sports_soccer,
-                                            size: 40.sp,
-                                            color: Colors.white,
+                                          CustomText(
+                                              text: getTime(
+                                                  "${matchDetailController.matchDetailData.value.start ?? ''}"),
+                                              color: Colors.white),
+                                          Row(
+                                            children: [
+                                              CustomText(
+                                                text: matchDetailController
+                                                    .matchDetailData
+                                                    .value
+                                                    .ftScore?[0]
+                                                    .toString(),
+                                                color: Colors.white,
+                                                fontSize: 20.sp,
+                                              ),
+                                              CustomText(
+                                                text: ' - ',
+                                                color: Colors.white,
+                                                fontSize: 20.sp,
+                                              ),
+                                              CustomText(
+                                                text: matchDetailController
+                                                    .matchDetailData
+                                                    .value
+                                                    .ftScore?[1]
+                                                    .toString(),
+                                                color: Colors.white,
+                                                fontSize: 20.sp,
+                                              ),
+                                            ],
                                           ),
-                                          Obx(
-                                            () => CustomText(
-                                              maxLines: 2,
-                                              textAlign: TextAlign.center,
-                                              text: matchDetailController
-                                                  .matchDetailData
-                                                  .value
-                                                  .teams?[1]
-                                                  .name,
-                                              color: Colors.white,
-                                            ),
-                                          ),
+                                          (matchDetailController.matchDetailData
+                                                          .value.ftScore ??
+                                                      [])
+                                                  .isNotEmpty
+                                              ? CustomText(
+                                                  text: matchDetailController
+                                                      .status.value,
+                                                  color: Colors.white,
+                                                )
+                                              : Container(),
                                         ],
                                       ),
-                                    ),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() => const TeamScreen(),
+                                              arguments: {
+                                                'teamId': (matchDetailController
+                                                                    .matchDetailData
+                                                                    .value
+                                                                    .teams ??
+                                                                [])
+                                                            .length >
+                                                        1
+                                                    ? (matchDetailController
+                                                            .matchDetailData
+                                                            .value
+                                                            .teams?[1]
+                                                            .id ??
+                                                        '0')
+                                                    : '0'
+                                              });
+                                        },
+                                        child: SizedBox(
+                                          width: 1.sw * 0.25,
+                                          child: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.sports_soccer,
+                                                size: 40.sp,
+                                                color: Colors.white,
+                                              ),
+                                              Obx(
+                                                () => CustomText(
+                                                  maxLines: 2,
+                                                  textAlign: TextAlign.center,
+                                                  text: matchDetailController
+                                                      .matchDetailData
+                                                      .value
+                                                      .teams?[1]
+                                                      .name,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                            TabBar(
-                              unselectedLabelColor: Colors.white,
-                              indicatorColor: Colors.white,
-                              dividerColor: Colors.transparent,
-                              labelColor: Colors.white,
-                              indicatorSize: TabBarIndicatorSize.tab,
-                              tabs: [
-                                Tab(text: 'overall'.tr),
-                                Tab(text: 'h2h'.tr),
+                                ),
+                                TabBar(
+                                  unselectedLabelColor: Colors.white,
+                                  indicatorColor: Colors.white,
+                                  dividerColor: Colors.transparent,
+                                  labelColor: Colors.white,
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Tab(text: 'overall'.tr),
+                                    Tab(text: 'standings'.tr),
+                                    Tab(text: 'h2h'.tr),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                )
                               ],
                             ),
-                            SizedBox(
-                              height: 1.h,
-                            )
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            OverallWidget(
-                              date: matchDetailController.formatted.value,
-                              name: matchDetailController.name.value,
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              children: [
+                                OverallWidget(
+                                  date: getDate(
+                                      "${matchDetailController.matchDetailData.value.start ?? ''}"),
+                                  name: matchDetailController.name.value,
+                                ),
+                                const StandingWidget(),
+                                const H2HWidget()
+                              ],
                             ),
-                            H2HWidget()
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
           );
         }),
       ),
