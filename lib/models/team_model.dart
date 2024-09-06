@@ -394,6 +394,7 @@ class Fixtures {
   List<Teams>? teams;
   int? start;
   int? aStart;
+  String? statusTxt;
   int? status;
   int? oStatus;
   List<int>? score;
@@ -412,6 +413,7 @@ class Fixtures {
       this.teams,
       this.start,
       this.aStart,
+      this.statusTxt,
       this.status,
       this.oStatus,
       this.score,
@@ -435,6 +437,7 @@ class Fixtures {
     }
     start = json['start'];
     aStart = json['a_start'];
+    statusTxt = json['status_txt'];
     status = json['status'];
     oStatus = json['o_status'];
     score = json['score'].cast<int>();

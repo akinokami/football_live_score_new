@@ -19,12 +19,34 @@ class MatchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        centerTitle: true,
-        title: CustomText(
-          text: 'matches'.tr,
-          fontSize: 15.sp,
-          fontWeight: FontWeight.w500,
+        centerTitle: false,
+        title: Obx(
+          () => CustomText(
+            text: "${'matches'.tr} - ${matchController.formattedDate}",
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w500,
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              DateTime? picked = await showDatePicker(
+                context: context,
+                initialDate: matchController.selectedDate.value,
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2101),
+              );
+              if (picked != null &&
+                  picked != matchController.selectedDate.value) {
+                matchController.setDate(picked);
+              }
+            },
+            icon: Icon(
+              Icons.calendar_month,
+              color: secondaryColor,
+            ),
+          ),
+        ],
       ),
       body: Obx(
         () => matchController.isLoading.value
@@ -35,33 +57,6 @@ class MatchScreen extends StatelessWidget {
                 padding: EdgeInsets.all(5.w),
                 child: Column(
                   children: [
-                    Obx(
-                      () => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(text: matchController.formattedDate.value),
-                          IconButton(
-                            onPressed: () async {
-                              DateTime? picked = await showDatePicker(
-                                context: context,
-                                initialDate: matchController.selectedDate.value,
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2101),
-                              );
-                              if (picked != null &&
-                                  picked !=
-                                      matchController.selectedDate.value) {
-                                matchController.getMatches();
-                              }
-                            },
-                            icon: Icon(
-                              Icons.calendar_month,
-                              color: secondaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                     Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -115,16 +110,25 @@ class MatchScreen extends StatelessWidget {
                                                                           index1]
                                                                       .status ??
                                                                   0) ==
-                                                              1
-                                                          ? getTime(
-                                                              "${matchController.matches[index].matches?[index1].start ?? ''}")
+                                                              17
+                                                          ? 'Abandoned'
                                                           : (matchController
-                                                                  .matches[
-                                                                      index]
-                                                                  .matches?[
-                                                                      index1]
-                                                                  .statusText ??
-                                                              ''),
+                                                                          .matches[
+                                                                              index]
+                                                                          .matches?[
+                                                                              index1]
+                                                                          .status ??
+                                                                      0) ==
+                                                                  1
+                                                              ? getTime(
+                                                                  "${matchController.matches[index].matches?[index1].start ?? ''}")
+                                                              : (matchController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .statusText ??
+                                                                  ''),
                                                 });
                                           },
                                           child: Padding(
@@ -218,9 +222,82 @@ class MatchScreen extends StatelessWidget {
                                                           text:
                                                               '${matchController.matches[index].matches?[index1].ftScore?[0] ?? ''} - ${matchController.matches[index].matches?[index1].ftScore?[1] ?? ''}'),
                                                     ),
-                                                    CustomText(
+                                                    Visibility(
+                                                      visible: matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status ==
+                                                              2 ||
+                                                          matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status ==
+                                                              3 ||
+                                                          matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status ==
+                                                              10,
+                                                      child: Container(
+                                                        width: 20.w,
+                                                        decoration: BoxDecoration(
+                                                            color:
+                                                                secondaryColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100.r)),
+                                                        padding:
+                                                            EdgeInsets.all(3.w),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: CustomText(
+                                                          color: Colors.white,
+                                                          fontSize: 10.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          text: matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .statusText ??
+                                                              '',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status !=
+                                                              2 &&
+                                                          matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status !=
+                                                              3 &&
+                                                          matchController
+                                                                  .matches[
+                                                                      index]
+                                                                  .matches?[
+                                                                      index1]
+                                                                  .status !=
+                                                              10,
+                                                      child: CustomText(
                                                         color: greyColor
                                                             .withOpacity(0.5),
+                                                        fontSize: 10.sp,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         text: matchController
@@ -237,16 +314,24 @@ class MatchScreen extends StatelessWidget {
                                                                         .matches?[
                                                                             index1]
                                                                         .status ==
-                                                                    1
-                                                                ? getTime(
-                                                                    "${matchController.matches[index].matches?[index1].start ?? ''}")
-                                                                : (matchController
-                                                                        .matches[
-                                                                            index]
-                                                                        .matches?[
-                                                                            index1]
-                                                                        .statusText ??
-                                                                    ''))
+                                                                    17
+                                                                ? 'AB'
+                                                                : matchController
+                                                                            .matches[
+                                                                                index]
+                                                                            .matches?[
+                                                                                index1]
+                                                                            .status ==
+                                                                        1
+                                                                    ? getTime(
+                                                                        "${matchController.matches[index].matches?[index1].start ?? ''}")
+                                                                    : (matchController
+                                                                            .matches[index]
+                                                                            .matches?[index1]
+                                                                            .statusText ??
+                                                                        ''),
+                                                      ),
+                                                    )
                                                   ],
                                                 ),
                                                 Icon(

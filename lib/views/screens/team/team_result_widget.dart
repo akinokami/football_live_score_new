@@ -22,36 +22,22 @@ class TeamResultWidget extends StatelessWidget {
             shrinkWrap: true,
             itemCount: results?.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  // Get.to(() => const TeamScreen());
-                },
-                child: CustomCard(
-                  widget: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.sports_soccer,
-                            size: 18.sp,
-                            color: secondaryColor,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Expanded(
-                            child: CustomText(
-                              text:
-                                  "${results?[index].cName ?? ''} ${results?[index].stName ?? ''} ${results?[index].season ?? ''}",
-                              isEllip: true,
-                            ),
-                          )
-                        ],
-                      ),
-                      kSizedBoxH5,
-                      Divider(height: 1.h, color: grey),
-                      kSizedBoxH10,
-                      Row(
+              return CustomCard(
+                widget: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      fontWeight: FontWeight.w500,
+                      text:
+                          "${results?[index].cName ?? ''} ${results?[index].stName ?? ''}",
+                      isEllip: true,
+                    ),
+                    kSizedBoxH5,
+                    Divider(height: 1.h, color: grey.withOpacity(0.3)),
+                    kSizedBoxH5,
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h, bottom: 5.h),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
@@ -62,6 +48,9 @@ class TeamResultWidget extends StatelessWidget {
                                   : '',
                               textAlign: TextAlign.right,
                               maxLines: 2,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                              color: greyColor.withOpacity(0.7),
                             ),
                           ),
                           Icon(
@@ -71,25 +60,15 @@ class TeamResultWidget extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              Row(
-                                children: [
-                                  CustomText(
-                                    text: (results?[index].score ?? []).isEmpty
-                                        ? "${results?[index].score?[0] ?? 0}"
-                                        : '0',
-                                  ),
-                                  const CustomText(
-                                    text: ' - ',
-                                  ),
-                                  CustomText(
-                                    text: (results?[index].score ?? []).length >
-                                            1
-                                        ? "${results?[index].score?[1] ?? 0}"
-                                        : '0',
-                                  )
-                                ],
-                              ),
-                              const CustomText(text: 'FT')
+                              CustomText(
+                                  fontWeight: FontWeight.w500,
+                                  text:
+                                      '${results?[index].score?[0] ?? ''} - ${results?[index].score?[1] ?? ''}'),
+                              CustomText(
+                                color: greyColor.withOpacity(0.5),
+                                fontWeight: FontWeight.w500,
+                                text: 'FT',
+                              )
                             ],
                           ),
                           Icon(
@@ -105,13 +84,15 @@ class TeamResultWidget extends StatelessWidget {
                                   : '',
                               textAlign: TextAlign.left,
                               maxLines: 2,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10.sp,
+                              color: greyColor.withOpacity(0.7),
                             ),
                           ),
                         ],
                       ),
-                      kSizedBoxH10,
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             });

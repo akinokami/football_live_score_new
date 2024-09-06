@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 String formatDate(DateTime date) {
-  final format = DateFormat('yyyy-MM-ddTHH:mm:ss');
+  final format = DateFormat('yyyy-MM-dd'); //THH:mm:ss
   return format.format(date);
 }
 
