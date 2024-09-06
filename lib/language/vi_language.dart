@@ -1,9 +1,5 @@
 class ViLanguage {
   Map<String, String> viLanguage = {
-    'vietnam': 'Tiếng Việt',
-    'english': 'English',
-    'chinese': '中文',
-    'india': 'हिन्दी',
     'lang': 'Tiếng Việt',
     'language': 'Ngôn ngữ',
     'change_language': 'Thay đổi ngôn ngữ',
@@ -21,5 +17,13 @@ class ViLanguage {
     'no_data': 'Không tìm thấy dữ liệu',
     'overall': 'Tổng thể',
     'h2h': 'H2H',
+    'live': 'Sống',
+    'no_live': 'Không có trận đấu trực tiếp.',
+    'info': 'Thông tin',
+    'result': 'Kết quả',
+    'squad': 'Đội hình',
+    'players': 'Người chơi',
+    'coach': 'Huấn luyện viên',
+    'team': 'Đội'
   };
 }

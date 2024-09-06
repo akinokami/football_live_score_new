@@ -1,9 +1,5 @@
 class HiLanguage {
   Map<String, String> hiLanguage = {
-    'vietnam': 'Tiếng Việt',
-    'english': 'English',
-    'chinese': '中文',
-    'india': 'हिन्दी',
     'lang': 'हिन्दी',
     'language': 'भाषा',
     'change_language': 'भाषा बदलें',
@@ -21,5 +17,13 @@ class HiLanguage {
     'no_data': 'कोई डेटा उपलब्ध नहीं है',
     'overall': 'समग्र',
     'h2h': 'H2H',
+    'live': 'रहना',
+    'no_live': 'कोई लाइव मैच नहीं है.',
+    'info': 'जानकारी',
+    'result': 'परिणाम',
+    'squad': 'दस्ता',
+    'players': 'खिलाड़ी',
+    'coach': 'प्रशिक्षक',
+    'team': 'टीम'
   };
 }

@@ -34,7 +34,7 @@ class LiveScreen extends StatelessWidget {
               )
             : liveController.matches.isEmpty
                 ? Center(
-                    child: CustomText(text: 'There is no live matches.'),
+                    child: CustomText(text: 'no_live'.tr),
                   )
                 : Padding(
                     padding: EdgeInsets.all(5.w),

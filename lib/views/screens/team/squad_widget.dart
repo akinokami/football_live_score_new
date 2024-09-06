@@ -24,7 +24,7 @@ class SquadWidget extends StatelessWidget {
               children: [
                 const CustomText(text: 'Players'),
                 kSizedBoxH5,
-                Divider(height: 1.h, color: grey),
+                Divider(height: 1.h, color: grey.withOpacity(0.3)),
                 kSizedBoxH5,
                 ListView.builder(
                   shrinkWrap: true,
@@ -68,7 +68,7 @@ class SquadWidget extends StatelessWidget {
               children: [
                 const CustomText(text: 'Coach'),
                 kSizedBoxH5,
-                Divider(height: 1.h, color: grey),
+                Divider(height: 1.h, color: grey.withOpacity(0.3)),
                 kSizedBoxH5,
                 ListView.builder(
                   shrinkWrap: true,

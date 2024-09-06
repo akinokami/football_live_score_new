@@ -1,9 +1,5 @@
 class EnLanguage {
   Map<String, String> enLanguage = {
-    'vietnam': 'Tiếng Việt',
-    'english': 'English',
-    'chinese': '中文',
-    'india': 'हिन्दी',
     'lang': 'English',
     'language': 'Language',
     'change_language': 'Change Language',
@@ -21,5 +17,13 @@ class EnLanguage {
     'no_data': 'No data found',
     'overall': 'Overall',
     'h2h': 'H2H',
+    'live': 'Live',
+    'no_live': 'There is no live matches.',
+    'info': 'Info',
+    'result': 'Result',
+    'squad': 'Squad',
+    'players': 'Players',
+    'coach': 'Coach',
+    'team': 'Team'
   };
 }
