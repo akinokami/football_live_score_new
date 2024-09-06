@@ -31,7 +31,9 @@ class MatchScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              Get.to(() => const SearchScreen());
+              Get.to(() => const SearchScreen(), arguments: {
+                'matches': matchController.matches,
+              });
             },
             icon: Icon(
               Icons.search,

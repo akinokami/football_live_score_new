@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:football_live_score/controller/match_controller.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
 import 'package:football_live_score/utils/function.dart';
 import 'package:football_live_score/views/screens/match/match_detail_screen.dart';
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:football_live_score/views/widgets/custom_text_form_field.dart';
 import 'package:get/get.dart';
+import '../../../controller/search_match_controller.dart';
 import '../../../utils/color_const.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/custom_text.dart';
@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final matchController = Get.put(MatchController());
+    final searchController = Get.put(SearchMatchController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -28,7 +28,7 @@ class SearchScreen extends StatelessWidget {
         ),
       ),
       body: Obx(
-        () => matchController.isLoading.value
+        () => searchController.isLoading.value
             ? const Center(
                 child: CustomLoading(),
               )
@@ -39,11 +39,11 @@ class SearchScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(5.w),
                       child: CustomTextFormField(
-                        controller: matchController.searchTxtController,
+                        controller: searchController.searchTxtController,
                         hintText: 'search'.tr,
                         isValidate: false,
                         onChange: (value) {
-                          matchController.searchMatch();
+                          searchController.searchMatch();
                         },
                       ),
                     ),
@@ -51,7 +51,7 @@ class SearchScreen extends StatelessWidget {
                     Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: matchController.searchMatches.length,
+                          itemCount: searchController.searchMatches.length,
                           itemBuilder: (context, index) {
                             return CustomCard(
                               widget: Column(
@@ -60,7 +60,7 @@ class SearchScreen extends StatelessWidget {
                                   CustomText(
                                     fontWeight: FontWeight.w500,
                                     text:
-                                        "${matchController.searchMatches[index].cName ?? ''} ${matchController.searchMatches[index].stName ?? ''}",
+                                        "${searchController.searchMatches[index].cName ?? ''} ${searchController.searchMatches[index].stName ?? ''}",
                                     isEllip: true,
                                   ),
                                   kSizedBoxH5,
@@ -70,7 +70,7 @@ class SearchScreen extends StatelessWidget {
                                   kSizedBoxH5,
                                   ListView.builder(
                                       shrinkWrap: true,
-                                      itemCount: matchController
+                                      itemCount: searchController
                                           .searchMatches[index].matches?.length,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -80,12 +80,12 @@ class SearchScreen extends StatelessWidget {
                                             Get.to(
                                                 () => const MatchDetailScreen(),
                                                 arguments: {
-                                                  'matchId': matchController
+                                                  'matchId': searchController
                                                           .searchMatches[index]
                                                           .matches?[index1]
                                                           .id ??
                                                       '',
-                                                  'status': (matchController
+                                                  'status': (searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
@@ -94,7 +94,7 @@ class SearchScreen extends StatelessWidget {
                                                               0) ==
                                                           6
                                                       ? 'FT'
-                                                      : (matchController
+                                                      : (searchController
                                                                       .searchMatches[
                                                                           index]
                                                                       .matches?[
@@ -103,7 +103,7 @@ class SearchScreen extends StatelessWidget {
                                                                   0) ==
                                                               17
                                                           ? 'Abandoned'
-                                                          : (matchController
+                                                          : (searchController
                                                                           .searchMatches[
                                                                               index]
                                                                           .matches?[
@@ -112,8 +112,8 @@ class SearchScreen extends StatelessWidget {
                                                                       0) ==
                                                                   1
                                                               ? getTime(
-                                                                  "${matchController.searchMatches[index].matches?[index1].start ?? ''}")
-                                                              : (matchController
+                                                                  "${searchController.searchMatches[index].matches?[index1].start ?? ''}")
+                                                              : (searchController
                                                                       .searchMatches[
                                                                           index]
                                                                       .matches?[
@@ -133,7 +133,7 @@ class SearchScreen extends StatelessWidget {
                                                 SizedBox(
                                                   width: 1.sw * 0.25,
                                                   child: CustomText(
-                                                    text: (matchController
+                                                    text: (searchController
                                                                     .searchMatches[
                                                                         index]
                                                                     .matches?[
@@ -141,7 +141,7 @@ class SearchScreen extends StatelessWidget {
                                                                     .teams ??
                                                                 [])
                                                             .isNotEmpty
-                                                        ? (matchController
+                                                        ? (searchController
                                                                 .searchMatches[
                                                                     index]
                                                                 .matches?[
@@ -166,42 +166,42 @@ class SearchScreen extends StatelessWidget {
                                                 Column(
                                                   children: [
                                                     Visibility(
-                                                      visible: matchController
+                                                      visible: searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               2 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               3 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               6 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               10 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               11 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
@@ -212,24 +212,24 @@ class SearchScreen extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           text:
-                                                              '${matchController.searchMatches[index].matches?[index1].ftScore?[0] ?? ''} - ${matchController.searchMatches[index].matches?[index1].ftScore?[1] ?? ''}'),
+                                                              '${searchController.searchMatches[index].matches?[index1].ftScore?[0] ?? ''} - ${searchController.searchMatches[index].matches?[index1].ftScore?[1] ?? ''}'),
                                                     ),
                                                     Visibility(
-                                                      visible: matchController
+                                                      visible: searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               2 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               3 ||
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
@@ -254,7 +254,7 @@ class SearchScreen extends StatelessWidget {
                                                           fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          text: matchController
+                                                          text: searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
@@ -265,21 +265,21 @@ class SearchScreen extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Visibility(
-                                                      visible: matchController
+                                                      visible: searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status !=
                                                               2 &&
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status !=
                                                               3 &&
-                                                          matchController
+                                                          searchController
                                                                   .searchMatches[
                                                                       index]
                                                                   .matches?[
@@ -292,7 +292,7 @@ class SearchScreen extends StatelessWidget {
                                                         fontSize: 10.sp,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        text: matchController
+                                                        text: searchController
                                                                     .searchMatches[
                                                                         index]
                                                                     .matches?[
@@ -300,7 +300,7 @@ class SearchScreen extends StatelessWidget {
                                                                     .status ==
                                                                 6
                                                             ? 'FT'
-                                                            : matchController
+                                                            : searchController
                                                                         .searchMatches[
                                                                             index]
                                                                         .matches?[
@@ -308,7 +308,7 @@ class SearchScreen extends StatelessWidget {
                                                                         .status ==
                                                                     17
                                                                 ? 'AB'
-                                                                : matchController
+                                                                : searchController
                                                                             .searchMatches[
                                                                                 index]
                                                                             .matches?[
@@ -316,8 +316,8 @@ class SearchScreen extends StatelessWidget {
                                                                             .status ==
                                                                         1
                                                                     ? getTime(
-                                                                        "${matchController.searchMatches[index].matches?[index1].start ?? ''}")
-                                                                    : (matchController
+                                                                        "${searchController.searchMatches[index].matches?[index1].start ?? ''}")
+                                                                    : (searchController
                                                                             .searchMatches[index]
                                                                             .matches?[index1]
                                                                             .statusText ??
@@ -334,7 +334,7 @@ class SearchScreen extends StatelessWidget {
                                                 SizedBox(
                                                   width: 1.sw * 0.25,
                                                   child: CustomText(
-                                                    text: (matchController
+                                                    text: (searchController
                                                                         .searchMatches[
                                                                             index]
                                                                         .matches?[
@@ -343,7 +343,7 @@ class SearchScreen extends StatelessWidget {
                                                                     [])
                                                                 .length >
                                                             1
-                                                        ? (matchController
+                                                        ? (searchController
                                                                 .searchMatches[
                                                                     index]
                                                                 .matches?[

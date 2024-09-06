@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/match_model.dart';
@@ -10,9 +9,6 @@ import '../utils/function.dart';
 class MatchController extends GetxController {
   final isLoading = false.obs;
   RxList<MatchModel> matches = <MatchModel>[].obs;
-  final searchTxtController = TextEditingController();
-  RxList<MatchModel> searchMatches = <MatchModel>[].obs;
-
   var selectedDate = DateTime.now().obs;
   final startDate = ''.obs;
   final endDate = ''.obs;
@@ -42,19 +38,5 @@ class MatchController extends GetxController {
     } finally {
       isLoading.value = false;
     }
-  }
-
-  void searchMatch() {
-    isLoading.value = true;
-    if (searchTxtController.text != '') {
-      searchMatches.value = matches
-          .where((element) => (element.cName ?? '')
-              .toLowerCase()
-              .contains(searchTxtController.text.toLowerCase()))
-          .toList();
-    } else {
-      searchMatches.value = matches;
-    }
-    isLoading.value = false;
   }
 }
