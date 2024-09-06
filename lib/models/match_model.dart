@@ -136,7 +136,7 @@ class Matches {
       this.id,
       this.pids,
       this.ut,
-        this.statusText,
+      this.statusText,
       this.status,
       this.pStatus,
       this.oStatus,

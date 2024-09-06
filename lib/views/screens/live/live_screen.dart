@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:football_live_score/controller/match_controller.dart';
+import 'package:football_live_score/controller/live_controller.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
-import 'package:football_live_score/utils/function.dart';
-import 'package:football_live_score/views/screens/match/match_detail_screen.dart';
 import 'package:football_live_score/views/widgets/custom_loading.dart';
 import 'package:get/get.dart';
 import '../../../utils/color_const.dart';
+import '../../../utils/function.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/custom_text.dart';
+import '../match/match_detail_screen.dart';
 
-class MatchScreen extends StatelessWidget {
-  const MatchScreen({super.key});
+class LiveScreen extends StatelessWidget {
+  const LiveScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final matchController = Get.put(MatchController());
+    final liveController = Get.put(LiveController());
+    // final matchDetailController = Get.put(MatchDetailController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         title: CustomText(
-          text: 'matches'.tr,
+          text: 'live'.tr,
           fontSize: 15.sp,
           fontWeight: FontWeight.w500,
         ),
       ),
       body: Obx(
-        () => matchController.isLoading.value
+        () => liveController.isLoading.value
             ? const Center(
                 child: CustomLoading(),
               )
@@ -35,37 +36,10 @@ class MatchScreen extends StatelessWidget {
                 padding: EdgeInsets.all(5.w),
                 child: Column(
                   children: [
-                    Obx(
-                      () => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(text: matchController.formattedDate.value),
-                          IconButton(
-                            onPressed: () async {
-                              DateTime? picked = await showDatePicker(
-                                context: context,
-                                initialDate: matchController.selectedDate.value,
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2101),
-                              );
-                              if (picked != null &&
-                                  picked !=
-                                      matchController.selectedDate.value) {
-                                matchController.getMatches();
-                              }
-                            },
-                            icon: Icon(
-                              Icons.calendar_month,
-                              color: secondaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                     Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: matchController.matches.length,
+                          itemCount: liveController.matches.length,
                           itemBuilder: (context, index) {
                             return CustomCard(
                               widget: Column(
@@ -74,7 +48,7 @@ class MatchScreen extends StatelessWidget {
                                   CustomText(
                                     fontWeight: FontWeight.w500,
                                     text:
-                                        "${matchController.matches[index].cName ?? ''} ${matchController.matches[index].stName ?? ''}",
+                                        "${liveController.matches[index].cName ?? ''} ${liveController.matches[index].stName ?? ''}",
                                     isEllip: true,
                                   ),
                                   kSizedBoxH5,
@@ -84,7 +58,7 @@ class MatchScreen extends StatelessWidget {
                                   kSizedBoxH5,
                                   ListView.builder(
                                       shrinkWrap: true,
-                                      itemCount: matchController
+                                      itemCount: liveController
                                           .matches[index].matches?.length,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -94,12 +68,12 @@ class MatchScreen extends StatelessWidget {
                                             Get.to(
                                                 () => const MatchDetailScreen(),
                                                 arguments: {
-                                                  'matchId': matchController
+                                                  'matchId': liveController
                                                           .matches[index]
                                                           .matches?[index1]
                                                           .id ??
                                                       '',
-                                                  'status': (matchController
+                                                  'status': (liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
@@ -108,7 +82,7 @@ class MatchScreen extends StatelessWidget {
                                                               0) ==
                                                           6
                                                       ? 'FT'
-                                                      : (matchController
+                                                      : (liveController
                                                                       .matches[
                                                                           index]
                                                                       .matches?[
@@ -117,8 +91,8 @@ class MatchScreen extends StatelessWidget {
                                                                   0) ==
                                                               1
                                                           ? getTime(
-                                                              "${matchController.matches[index].matches?[index1].start ?? ''}")
-                                                          : (matchController
+                                                              "${liveController.matches[index].matches?[index1].start ?? ''}")
+                                                          : (liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
@@ -138,7 +112,7 @@ class MatchScreen extends StatelessWidget {
                                                 SizedBox(
                                                   width: 1.sw * 0.25,
                                                   child: CustomText(
-                                                    text: (matchController
+                                                    text: (liveController
                                                                     .matches[
                                                                         index]
                                                                     .matches?[
@@ -146,7 +120,7 @@ class MatchScreen extends StatelessWidget {
                                                                     .teams ??
                                                                 [])
                                                             .isNotEmpty
-                                                        ? (matchController
+                                                        ? (liveController
                                                                 .matches[index]
                                                                 .matches?[
                                                                     index1]
@@ -170,42 +144,42 @@ class MatchScreen extends StatelessWidget {
                                                 Column(
                                                   children: [
                                                     Visibility(
-                                                      visible: matchController
+                                                      visible: liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               2 ||
-                                                          matchController
+                                                          liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               3 ||
-                                                          matchController
+                                                          liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               6 ||
-                                                          matchController
+                                                          liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               10 ||
-                                                          matchController
+                                                          liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
                                                                       index1]
                                                                   .status ==
                                                               11 ||
-                                                          matchController
+                                                          liveController
                                                                   .matches[
                                                                       index]
                                                                   .matches?[
@@ -216,14 +190,14 @@ class MatchScreen extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           text:
-                                                              '${matchController.matches[index].matches?[index1].ftScore?[0] ?? ''} - ${matchController.matches[index].matches?[index1].ftScore?[1] ?? ''}'),
+                                                              '${liveController.matches[index].matches?[index1].ftScore?[0] ?? ''} - ${liveController.matches[index].matches?[index1].ftScore?[1] ?? ''}'),
                                                     ),
                                                     CustomText(
                                                         color: greyColor
                                                             .withOpacity(0.5),
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        text: matchController
+                                                        text: liveController
                                                                     .matches[
                                                                         index]
                                                                     .matches?[
@@ -231,7 +205,7 @@ class MatchScreen extends StatelessWidget {
                                                                     .status ==
                                                                 6
                                                             ? 'FT'
-                                                            : matchController
+                                                            : liveController
                                                                         .matches[
                                                                             index]
                                                                         .matches?[
@@ -239,8 +213,8 @@ class MatchScreen extends StatelessWidget {
                                                                         .status ==
                                                                     1
                                                                 ? getTime(
-                                                                    "${matchController.matches[index].matches?[index1].start ?? ''}")
-                                                                : (matchController
+                                                                    "${liveController.matches[index].matches?[index1].start ?? ''}")
+                                                                : (liveController
                                                                         .matches[
                                                                             index]
                                                                         .matches?[
@@ -257,7 +231,7 @@ class MatchScreen extends StatelessWidget {
                                                 SizedBox(
                                                   width: 1.sw * 0.25,
                                                   child: CustomText(
-                                                    text: (matchController
+                                                    text: (liveController
                                                                         .matches[
                                                                             index]
                                                                         .matches?[
@@ -266,7 +240,7 @@ class MatchScreen extends StatelessWidget {
                                                                     [])
                                                                 .length >
                                                             1
-                                                        ? (matchController
+                                                        ? (liveController
                                                                 .matches[index]
                                                                 .matches?[
                                                                     index1]

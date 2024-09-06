@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/utils/enum.dart';
+import 'package:football_live_score/views/screens/live/live_screen.dart';
 import 'package:football_live_score/views/screens/match/match_screen.dart';
 import 'package:football_live_score/views/screens/settings/setting_screen.dart';
 import 'package:football_live_score/views/widgets/custom_text.dart';
@@ -200,7 +201,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
             index: bottomNavController.tabIndex.value,
             children: const [
               MatchScreen(),
-              MatchScreen(),
+              LiveScreen(),
               SettingScreen(),
             ],
           )),

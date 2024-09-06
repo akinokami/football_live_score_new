@@ -7,10 +7,10 @@ import 'package:football_live_score/views/widgets/custom_text.dart';
 
 import '../../../models/team_model.dart';
 
-class SquardWidget extends StatelessWidget {
+class SquadWidget extends StatelessWidget {
   final List<Participants>? players;
   final List<Participants>? coach;
-  const SquardWidget({super.key, this.players, this.coach});
+  const SquadWidget({super.key, this.players, this.coach});
 
   @override
   Widget build(BuildContext context) {

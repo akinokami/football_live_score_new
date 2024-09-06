@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:football_live_score/controller/team_controller.dart';
 import 'package:football_live_score/utils/color_const.dart';
 import 'package:football_live_score/utils/dimen_const.dart';
-import 'package:football_live_score/views/screens/team/squard_widget.dart';
+import 'package:football_live_score/views/screens/team/squad_widget.dart';
 import 'package:football_live_score/views/screens/team/team_match_widget.dart';
 import 'package:football_live_score/views/screens/team/team_info_widget.dart';
 import 'package:football_live_score/views/screens/team/team_result_widget.dart';
@@ -71,7 +71,7 @@ class TeamScreen extends StatelessWidget {
                               Tab(text: 'info'.tr),
                               Tab(text: 'matches'.tr),
                               Tab(text: 'result'.tr),
-                              Tab(text: 'squard'.tr),
+                              Tab(text: 'squad'.tr),
                             ],
                           ),
                           SizedBox(
@@ -97,7 +97,7 @@ class TeamScreen extends StatelessWidget {
                               ? Center(
                                   child: CustomText(text: 'no_data'.tr),
                                 )
-                              : SquardWidget(
+                              : SquadWidget(
                                   players: teamController.players,
                                   coach: teamController.coach,
                                 )

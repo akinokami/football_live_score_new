@@ -11,11 +11,7 @@ import '../../widgets/custom_text.dart';
 import 'overall_widget.dart';
 
 class MatchDetailScreen extends StatelessWidget {
-  const MatchDetailScreen({
-    super.key,
-    required this.status,
-  });
-  final String status;
+  const MatchDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -132,10 +128,11 @@ class MatchDetailScreen extends StatelessWidget {
                                                   [])
                                               .isNotEmpty
                                           ? CustomText(
-                                              text: status,
+                                              text: matchDetailController
+                                                  .status.value,
                                               color: Colors.white,
                                             )
-                                          : SizedBox.shrink(),
+                                          : Container(),
                                     ],
                                   ),
                                   InkWell(
