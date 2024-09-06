@@ -11,26 +11,28 @@ class MatchController extends GetxController {
   RxList<MatchModel> matches = <MatchModel>[].obs;
 
   var selectedDate = DateTime.now().obs;
-  final formattedDate = ''.obs;
+  final startDate = ''.obs;
+  final endDate = ''.obs;
 
   @override
   void onInit() {
-    formattedDate.value = formatDate(DateTime.now());
+    startDate.value = formatDate(DateTime.now());
+    endDate.value =
+        formatDate(DateTime.now().subtract(const Duration(days: 1)));
     getMatches();
     super.onInit();
   }
 
   void setDate(DateTime pickedDate) {
-    formattedDate.value = formatDate(pickedDate);
+    startDate.value = formatDate(pickedDate);
+    endDate.value = formatDate(pickedDate.subtract(const Duration(days: 1)));
     getMatches();
   }
 
   Future<void> getMatches() async {
     isLoading.value = true;
     try {
-      final result =
-          await ApiRepo().getMatches(formattedDate.value, formattedDate.value);
-      // .getMatches('2024-09-04T16:00:00', '2024-09-06T15:59:59');
+      final result = await ApiRepo().getMatches(endDate.value, startDate.value);
       matches.value = result;
     } catch (e) {
       constants.showSnackBar(title: 'Error', msg: e.toString(), textColor: red);

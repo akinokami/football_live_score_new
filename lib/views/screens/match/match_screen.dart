@@ -22,7 +22,7 @@ class MatchScreen extends StatelessWidget {
         centerTitle: false,
         title: Obx(
           () => CustomText(
-            text: "${'matches'.tr} - ${matchController.formattedDate}",
+            text: "${'matches'.tr} - ${matchController.startDate}",
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,
           ),
