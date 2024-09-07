@@ -211,54 +211,85 @@ class LiveScreen extends StatelessWidget {
                                                               text:
                                                                   '${liveController.matches[index].matches?[index1].ftScore?[0] ?? ''} - ${liveController.matches[index].matches?[index1].ftScore?[1] ?? ''}'),
                                                         ),
-                                                        Container(
-                                                          width: 20.w,
-                                                          decoration: BoxDecoration(
-                                                              color: liveController
-                                                                              .matches[
-                                                                                  index]
-                                                                              .matches?[
-                                                                                  index1]
-                                                                              .status ==
-                                                                          2 ||
-                                                                      liveController
-                                                                              .matches[
-                                                                                  index]
-                                                                              .matches?[
-                                                                                  index1]
-                                                                              .status ==
-                                                                          3
-                                                                  ? secondaryColor
-                                                                  : Colors
-                                                                      .white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          100.r)),
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  3.w),
-                                                          alignment:
-                                                              Alignment.center,
+                                                        Visibility(
+                                                          visible: liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status ==
+                                                                  2 ||
+                                                              liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status ==
+                                                                  3 ||
+                                                              liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status ==
+                                                                  10,
+                                                          child: Container(
+                                                            width: 20.w,
+                                                            decoration: BoxDecoration(
+                                                                color:
+                                                                    secondaryColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            100.r)),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    3.w),
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: CustomText(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              text: liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .statusText ??
+                                                                  '',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Visibility(
+                                                          visible: liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status !=
+                                                                  2 &&
+                                                              liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status !=
+                                                                  3 &&
+                                                              liveController
+                                                                      .matches[
+                                                                          index]
+                                                                      .matches?[
+                                                                          index1]
+                                                                      .status !=
+                                                                  10,
                                                           child: CustomText(
-                                                            color: liveController
-                                                                            .matches[
-                                                                                index]
-                                                                            .matches?[
-                                                                                index1]
-                                                                            .status ==
-                                                                        2 ||
-                                                                    liveController
-                                                                            .matches[
-                                                                                index]
-                                                                            .matches?[
-                                                                                index1]
-                                                                            .status ==
-                                                                        3
-                                                                ? Colors.white
-                                                                : greyColor
-                                                                    .withOpacity(
-                                                                        0.5),
+                                                            color: greyColor
+                                                                .withOpacity(
+                                                                    0.5),
                                                             fontSize: 10.sp,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -276,14 +307,14 @@ class LiveScreen extends StatelessWidget {
                                                                             .matches?[
                                                                                 index1]
                                                                             .status ==
-                                                                        1
-                                                                    ? getTime(
-                                                                        "${liveController.matches[index].matches?[index1].start ?? ''}")
-                                                                    : (liveController
-                                                                            .matches[index]
-                                                                            .matches?[index1]
-                                                                            .statusText ??
-                                                                        ''),
+                                                                        17
+                                                                    ? 'AB'
+                                                                    : liveController.matches[index].matches?[index1].status ==
+                                                                            1
+                                                                        ? getTime(
+                                                                            "${liveController.matches[index].matches?[index1].start ?? ''}")
+                                                                        : (liveController.matches[index].matches?[index1].statusText ??
+                                                                            ''),
                                                           ),
                                                         )
                                                       ],

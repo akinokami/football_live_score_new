@@ -7,10 +7,10 @@ import 'package:football_live_score/views/widgets/custom_text.dart';
 
 import '../../../models/team_model.dart';
 
-class SquadWidget extends StatelessWidget {
+class TeamSquadWidget extends StatelessWidget {
   final List<Participants>? players;
   final List<Participants>? coach;
-  const SquadWidget({super.key, this.players, this.coach});
+  const TeamSquadWidget({super.key, this.players, this.coach});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SquadWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(
-                            Icons.sports_soccer,
+                            Icons.account_circle,
                             size: 30.sp,
                             color: secondaryColor,
                           ),
@@ -80,7 +80,7 @@ class SquadWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(
-                            Icons.sports_soccer,
+                            Icons.account_circle,
                             size: 30.sp,
                             color: secondaryColor,
                           ),

@@ -188,6 +188,13 @@ class MatchDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 TabBar(
+                                  onTap: (value) {
+                                    if (value == 1) {
+                                      matchDetailController.getStandings();
+                                    } else if (value == 2) {
+                                      matchDetailController.getH2H();
+                                    }
+                                  },
                                   unselectedLabelColor: Colors.white,
                                   indicatorColor: Colors.white,
                                   dividerColor: Colors.transparent,
@@ -213,8 +220,42 @@ class MatchDetailScreen extends StatelessWidget {
                                       "${matchDetailController.matchDetailData.value.start ?? ''}"),
                                   name: matchDetailController.name.value,
                                 ),
-                                const StandingWidget(),
-                                const H2HWidget()
+                                Obx(
+                                  () => matchDetailController.isLoading1.value
+                                      ? const CustomLoading()
+                                      : StandingWidget(
+                                          tables:
+                                              matchDetailController.table.value,
+                                          teamAId: (matchDetailController.matchDetailData.value.teams ?? [])
+                                                  .isNotEmpty
+                                              ? (matchDetailController
+                                                      .matchDetailData
+                                                      .value
+                                                      .teams?[0]
+                                                      .id ??
+                                                  '')
+                                              : '',
+                                          teamBId: (matchDetailController
+                                                              .matchDetailData
+                                                              .value
+                                                              .teams ??
+                                                          [])
+                                                      .length >
+                                                  1
+                                              ? (matchDetailController
+                                                      .matchDetailData
+                                                      .value
+                                                      .teams?[1]
+                                                      .id ??
+                                                  '')
+                                              : ''),
+                                ),
+                                Obx(() => matchDetailController.isLoading1.value
+                                    ? const CustomLoading()
+                                    : H2HWidget(
+                                        h2hModel: matchDetailController
+                                            .h2hModel.value,
+                                      ))
                               ],
                             ),
                           ),
