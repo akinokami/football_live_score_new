@@ -92,7 +92,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
                                       MediaQuery.of(context).size.width * 0.5,
                                   child: CustomText(
                                     text: 'agree'.tr,
-                                    fontSize: 12.sp,
+                                    fontSize: 12,
                                     maxLines: 2,
                                     color: secondaryColor,
                                   ),
@@ -110,6 +110,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
                               child: CustomText(
                                 text: "accept".tr,
                                 color: whiteColor,
+                                fontSize: 12,
                               ),
                               onPressed: isAccepted
                                   ? () async {
@@ -141,49 +142,51 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
       fontSize: 11.sp);
 
   final TextStyle selectedLabelStyle = TextStyle(
-      color: secondaryColor, fontWeight: FontWeight.w500, fontSize: 11.sp);
+      color: secondaryColor, fontWeight: FontWeight.w500, fontSize: 10.sp);
 
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: SizedBox(
           height: 55.h,
-          child: BottomNavigationBar(
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
-            onTap: landingPageController.changeTabIndex,
-            currentIndex: landingPageController.tabIndex.value,
-            backgroundColor: whiteColor,
-            unselectedItemColor: Colors.black54,
-            selectedItemColor: secondaryColor,
-            unselectedLabelStyle: unselectedLabelStyle,
-            selectedLabelStyle: selectedLabelStyle,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.sports_soccer,
-                  size: 18.w,
+          child: SingleChildScrollView(
+            child: BottomNavigationBar(
+              showUnselectedLabels: true,
+              showSelectedLabels: true,
+              onTap: landingPageController.changeTabIndex,
+              currentIndex: landingPageController.tabIndex.value,
+              backgroundColor: whiteColor,
+              unselectedItemColor: Colors.black54,
+              selectedItemColor: secondaryColor,
+              unselectedLabelStyle: unselectedLabelStyle,
+              selectedLabelStyle: selectedLabelStyle,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.sports_soccer,
+                    size: 17.w,
+                  ),
+                  label: 'matches'.tr,
+                  backgroundColor: primaryColor,
                 ),
-                label: 'matches'.tr,
-                backgroundColor: primaryColor,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.tv,
-                  size: 18.w,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.tv,
+                    size: 17.w,
+                  ),
+                  label: 'live'.tr,
+                  backgroundColor: primaryColor,
                 ),
-                label: 'live'.tr,
-                backgroundColor: primaryColor,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.settings,
-                  size: 18.w,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.settings,
+                    size: 17.w,
+                  ),
+                  label: 'settings'.tr,
+                  backgroundColor: primaryColor,
                 ),
-                label: 'settings'.tr,
-                backgroundColor: primaryColor,
-              ),
-            ],
+              ],
+            ),
           ),
         )));
   }
