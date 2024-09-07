@@ -25,6 +25,17 @@ class HiLanguage {
     'players': 'खिलाड़ी',
     'coach': 'प्रशिक्षक',
     'team': 'टीम',
-    'standings': 'स्टैंडिंग'
+    'standings': 'स्टैंडिंग',
+    'possession': 'कब्ज़ा',
+    'attack': 'आक्रमण करना',
+    'shots_on_target': 'निशाने पर शॉट',
+    'shots_off_target': 'निशाने से दूर शॉट',
+    'corner_kicks': 'कॉर्नर किक्स',
+    'offsides': 'ऑफ़साइड',
+    'defense': 'रक्षा',
+    'fouls': 'बेईमानी',
+    'throw_ins': 'फेंकता-है',
+    'bookings': 'बुकिंग के',
+    'yellow_cards': 'पीले कार्ड'
   };
 }

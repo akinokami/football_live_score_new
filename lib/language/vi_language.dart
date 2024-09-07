@@ -25,6 +25,17 @@ class ViLanguage {
     'players': 'Người chơi',
     'coach': 'Huấn luyện viên',
     'team': 'Đội',
-    'standings': 'Bảng xếp hạng'
+    'standings': 'Bảng xếp hạng',
+    'possession': 'Chiếm hữu',
+    'attack': 'Tấn công',
+    'shots_on_target': 'Số cú sút trúng đích',
+    'shots_off_target': 'Bắn chệch mục tiêu',
+    'corner_kicks': 'Đá phạt góc',
+    'offsides': 'Việt vị',
+    'defense': 'Phòng thủ',
+    'fouls': 'Phạm lỗi',
+    'throw_ins': 'Ném-biên',
+    'bookings': 'Đặt chỗ',
+    'yellow_cards': 'Thẻ vàng'
   };
 }

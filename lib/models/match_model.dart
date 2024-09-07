@@ -50,7 +50,8 @@ class MatchModel {
     noScorers = json['noScorers'];
     noTeamStats = json['noTeamStats'];
     noTracker = json['noTracker'];
-    countryCodes = json['countryCodes'].cast<String>();
+    countryCodes =
+        json['countryCodes'] != null ? json['countryCodes'].cast<String>() : [];
     highlighted = json['highlighted'];
     isPopular = json['isPopular'];
     if (json['matches'] != null) {
@@ -184,8 +185,8 @@ class Matches {
     round = json['round'];
     start = json['start'];
     cov = json['cov'];
-    score = json['score'].cast<int>();
-    ftScore = json['ft_score'].cast<int>();
+    score = json['score'] != null ? json['score'].cast<int>() : [];
+    ftScore = json['ft_score'] != null ? json['ft_score'].cast<int>() : [];
     highlighted = json['highlighted'];
     canEndWithDraw = json['can_end_with_draw'];
     season = json['season'];

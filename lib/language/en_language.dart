@@ -25,6 +25,17 @@ class EnLanguage {
     'players': 'Players',
     'coach': 'Coach',
     'team': 'Team',
-    'standings': 'Standings'
+    'standings': 'Standings',
+    'possession': 'Possession',
+    'attack': 'Attack',
+    'shots_on_target': 'Shots on target',
+    'shots_off_target': 'Shots off target',
+    'corner_kicks': 'Cornor kicks',
+    'offsides': 'Offsides',
+    'defense': 'Defense',
+    'fouls': 'Fouls',
+    'throw_ins': 'Throws-ins',
+    'bookings': 'Bookings',
+    'yellow_cards': 'Yellow cards'
   };
 }

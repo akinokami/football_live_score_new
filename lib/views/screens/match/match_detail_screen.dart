@@ -219,6 +219,8 @@ class MatchDetailScreen extends StatelessWidget {
                                   date: getDate(
                                       "${matchDetailController.matchDetailData.value.start ?? ''}"),
                                   name: matchDetailController.name.value,
+                                  matchDetailModel: matchDetailController
+                                      .matchDetailData.value,
                                 ),
                                 Obx(
                                   () => matchDetailController.isLoading1.value

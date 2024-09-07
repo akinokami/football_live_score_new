@@ -20,6 +20,7 @@ class ApiRepo {
           queryParameters: {
             "oddsPresentationConfigsId": "SNAPSCORE_APP_1X2_V1"
           });
+
       final matches = response.data as List;
       return matches.map((item) => MatchModel.fromJson(item)).toList();
     } catch (e) {
