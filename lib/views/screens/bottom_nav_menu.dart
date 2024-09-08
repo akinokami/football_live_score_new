@@ -139,7 +139,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
   final TextStyle unselectedLabelStyle = TextStyle(
       color: Colors.white.withOpacity(0.5),
       fontWeight: FontWeight.w500,
-      fontSize: 11.sp);
+      fontSize: 10.sp);
 
   final TextStyle selectedLabelStyle = TextStyle(
       color: secondaryColor, fontWeight: FontWeight.w500, fontSize: 10.sp);
@@ -147,47 +147,42 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: SizedBox(
-          height: 55.h,
-          child: SingleChildScrollView(
-            child: BottomNavigationBar(
-              showUnselectedLabels: true,
-              showSelectedLabels: true,
-              onTap: landingPageController.changeTabIndex,
-              currentIndex: landingPageController.tabIndex.value,
-              backgroundColor: whiteColor,
-              unselectedItemColor: Colors.black54,
-              selectedItemColor: secondaryColor,
-              unselectedLabelStyle: unselectedLabelStyle,
-              selectedLabelStyle: selectedLabelStyle,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.sports_soccer,
-                    size: 17.w,
-                  ),
-                  label: 'matches'.tr,
-                  backgroundColor: primaryColor,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.tv,
-                    size: 17.w,
-                  ),
-                  label: 'live'.tr,
-                  backgroundColor: primaryColor,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.settings,
-                    size: 17.w,
-                  ),
-                  label: 'settings'.tr,
-                  backgroundColor: primaryColor,
-                ),
-              ],
+        child: BottomNavigationBar(
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
+          onTap: landingPageController.changeTabIndex,
+          currentIndex: landingPageController.tabIndex.value,
+          backgroundColor: whiteColor,
+          unselectedItemColor: Colors.black54,
+          selectedItemColor: secondaryColor,
+          unselectedLabelStyle: unselectedLabelStyle,
+          selectedLabelStyle: selectedLabelStyle,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.sports_soccer,
+                size: 18.sp,
+              ),
+              label: 'matches'.tr,
+              backgroundColor: primaryColor,
             ),
-          ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.tv,
+                size: 18.sp,
+              ),
+              label: 'live'.tr,
+              backgroundColor: primaryColor,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+                size: 18.sp,
+              ),
+              label: 'settings'.tr,
+              backgroundColor: primaryColor,
+            ),
+          ],
         )));
   }
 
@@ -195,8 +190,7 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
   Widget build(BuildContext context) {
     final BottomNavController bottomNavController =
         Get.put(BottomNavController(), permanent: false);
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: primaryColor,
       bottomNavigationBar:
           buildBottomNavigationMenu(context, bottomNavController),
@@ -208,6 +202,6 @@ class _BottomNavMenuState extends State<BottomNavMenu> {
               SettingScreen(),
             ],
           )),
-    ));
+    );
   }
 }

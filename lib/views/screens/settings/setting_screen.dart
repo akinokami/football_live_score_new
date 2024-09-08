@@ -25,8 +25,7 @@ class SettingScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.all(10.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               CustomText(text: 'general'.tr),
               SizedBox(height: 5.h),
