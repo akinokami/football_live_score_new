@@ -36,11 +36,13 @@ class MyApp extends StatelessWidget {
           // darkTheme: CustomTheme.darkTheme,
           // themeMode: ThemeMode.system,
           translations: Languages(),
-          locale: Global.language == Language.vi.name
-              ? const Locale('vi', 'VN')
-              : Global.language == Language.hi.name
-                  ? const Locale('hi', 'IN')
-                  : const Locale('en', 'US'),
+          locale: Global.language == Language.zh.name
+              ? const Locale('zh', 'CN')
+              : Global.language == Language.vi.name
+                  ? const Locale('vi', 'VN')
+                  : Global.language == Language.hi.name
+                      ? const Locale('hi', 'IN')
+                      : const Locale('en', 'US'),
           fallbackLocale: const Locale('vi', 'VN'),
           home: const SplashScreen(),
           debugShowCheckedModeBanner: false,
