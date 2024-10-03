@@ -112,7 +112,7 @@ class Stages {
         json['cupInfo'] != null ? CupInfo.fromJson(json['cupInfo']) : null;
     standing =
         json['standing'] != null ? Standing.fromJson(json['standing']) : null;
-    forms = json['forms'].cast<String>();
+    forms = json['forms'] != null ? json['forms'].cast<String>() : [];
   }
 
   Map<String, dynamic> toJson() {
@@ -330,7 +330,7 @@ class Results {
     status = json['status'];
     oStatus = json['o_status'];
     win = json['win'];
-    score = json['score'].cast<int>();
+    score = json['score'] != null ? json['score'].cast<int>() : [];
     highlighted = json['highlighted'];
   }
 
@@ -440,7 +440,7 @@ class Fixtures {
     statusTxt = json['status_txt'];
     status = json['status'];
     oStatus = json['o_status'];
-    score = json['score'].cast<int>();
+    score = json['score'] != null ? json['score'].cast<int>() : [];
     highlighted = json['highlighted'];
   }
 
